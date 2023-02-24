@@ -33,16 +33,7 @@ final class AppButton: UIButton {
         
         self.layer.cornerRadius = radius
         
-        switch type {
-        case 1:
-            self.backgroundColor = Resources.Colors.inActiveStartButton
-        case 2:
-            self.backgroundColor = Resources.Colors.inActiveStopButton
-        case 3:
-            self.backgroundColor = Resources.Colors.inActiveButton
-        default:
-            fatalError()
-        }
+        unclicked()
     }
     
     //MARK: - Private Methods
@@ -81,36 +72,3 @@ final class AppButton: UIButton {
         }
     }
 }
-
-
-
-/*
- private func removeAllTargets() {
-     self.removeTarget(self, action: #selector(unclicked), for: .touchUpInside)
-     self.removeTarget(self, action: #selector(clicked), for: .touchDown)
-     self.removeTarget(self, action: #selector(unclicked), for: .touchDragExit)
-     self.setTitleColor(.white, for: .highlighted)
- }
- 
-private func setAlwaysPressed() {
-     self.removeTarget(self, action: #selector(unclicked), for: .touchUpInside)
-     self.removeTarget(self, action: #selector(clicked), for: .touchDown)
-     self.removeTarget(self, action: #selector(unclicked), for: .touchDragExit)
-     
-     self.setTitleColor(Resources.Colors.activeButtonTextColor, for: .normal)
-    switch type {
-    case 1:
-        self.backgroundColor = Resources.Colors.inactiveButtonColorStart
-    case 2:
-        self.backgroundColor = Resources.Colors.inactiveButtonColorStop
-    case 3:
-        self.backgroundColor = Resources.Colors.inactiveButtonColorStop
-    default:
-        fatalError()
-    }
-     self.layer.shadowOffset = CGSize(
-         width: -Constants.shadowOffsetWidth,
-         height: -Constants.shadowOffsetHeight
-     )
- }
- */

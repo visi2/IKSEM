@@ -22,10 +22,11 @@
 		3D4A5B3E298048B2005550E1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B3D298048B2005550E1 /* SettingsVC.swift */; };
 		3D4A5B4129804D73005550E1 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B4029804D73005550E1 /* Resources.swift */; };
 		3D4A5B4429805458005550E1 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B4329805458005550E1 /* UIColor + Extension.swift */; };
+		3D5ADDD529A8C2E1009B46BE /* CalibrationTableColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */; };
+		3D5ADDD629A8D8FE009B46BE /* CalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */; };
 		3D7699E0299F76A10066B790 /* SettigsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7699DF299F76A10066B790 /* SettigsView.swift */; };
 		3DB1943329A3D9D80070DF3A /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */; };
 		3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFA29A76E0500FA4A7D /* StorageView.swift */; };
-		3DB91FFD29A79B8F00FA4A7D /* CalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */; };
 		3DC712E0298175E400AE8960 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC712DF298175E400AE8960 /* MeasureView.swift */; };
 		3DF781412993EC78003E0E46 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF781402993EC78003E0E46 /* DataView.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		3D4A5B3D298048B2005550E1 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3D4A5B4029804D73005550E1 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		3D4A5B4329805458005550E1 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationTableColumn.swift; sourceTree = "<group>"; };
 		3D7699DF299F76A10066B790 /* SettigsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettigsView.swift; sourceTree = "<group>"; };
 		3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Extension.swift"; sourceTree = "<group>"; };
 		3DB91FFA29A76E0500FA4A7D /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				3D4A5B3929804888005550E1 /* CalibrationVC.swift */,
 				3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */,
+				3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */,
 			);
 			path = Calibration;
 			sourceTree = "<group>";
@@ -354,11 +357,12 @@
 				3D4A5B3E298048B2005550E1 /* SettingsVC.swift in Sources */,
 				3D4A5B1C29804019005550E1 /* MainNavigationController.swift in Sources */,
 				3D4A5B3629804705005550E1 /* MeasureVC.swift in Sources */,
-				3DB91FFD29A79B8F00FA4A7D /* CalibrationView.swift in Sources */,
 				3D4A5B1829804019005550E1 /* AppDelegate.swift in Sources */,
 				3D4A5B3C2980489A005550E1 /* StorageVC.swift in Sources */,
 				3D4A5B3A29804888005550E1 /* CalibrationVC.swift in Sources */,
 				3D4A5B4129804D73005550E1 /* Resources.swift in Sources */,
+				3D5ADDD629A8D8FE009B46BE /* CalibrationView.swift in Sources */,
+				3D5ADDD529A8C2E1009B46BE /* CalibrationTableColumn.swift in Sources */,
 				3DB1943329A3D9D80070DF3A /* TextField + Extension.swift in Sources */,
 				3D4A5B1A29804019005550E1 /* SceneDelegate.swift in Sources */,
 				3D4173AD298AF669003E27F5 /* AppButton.swift in Sources */,

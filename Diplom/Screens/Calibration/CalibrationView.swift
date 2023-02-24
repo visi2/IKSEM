@@ -12,6 +12,114 @@ final class CalibrationView: UIView {
         return label
     }()
     
+    private lazy var firstColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["Cила"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var firstColumnTagsTView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["10т", "20т", "30т"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var firstColumnTagsOView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["30o", "20o", "10o"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var secondColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["Вес"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var secondColumnValueTView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var secondColumnValueOView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var thirdColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["Мом"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var thirdColumnValueTView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var thirdColumnValueOView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var fourthColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [""])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var fourthColumnValueView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["в", "м", "0в", "0m"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var fifthColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["Тек"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var fifthColumnValueView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var sixthColumnHeaderView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: ["Нов"])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var sixthColumnValueView: CalibrationTableColumn = {
+        let column = CalibrationTableColumn(textElements: [nil, nil, nil, nil])
+        column.translatesAutoresizingMaskIntoConstraints = false
+        return column
+    }()
+    
+    private lazy var firstHalfstackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var secondHalfstackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var takeSettingsButton: AppButton = {
         let button = AppButton(text: "Принять", radius: 10, type: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -28,18 +136,6 @@ final class CalibrationView: UIView {
         let button = AppButton(text: "Отменить", radius: 10, type: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }()
-    
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .fill
-        stackView.spacing = 10
-        stackView.alignment = .fill
-        stackView.spacing = 50
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
     }()
     
     private lazy var stackViewAll: UIStackView = {
@@ -61,7 +157,7 @@ final class CalibrationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-      //  setupUI()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -70,40 +166,30 @@ final class CalibrationView: UIView {
     
     //MARK: - Setting UI Methods
     
-  /*  private func setupUI() {
-        self.backgroundColor = Resources.Colors.backgroundColor
+    private func createStack() {
         
-        [showMapButton, halfSwitch].forEach({
-            stackView.addArrangedSubview($0)
-        })
+        let stackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        [datelabel, serialNumberlabel, dateStartStopMeasurelabel, averageKCLabel,
-         averageSpeedLabel, valueOfSlippageLabel, valueOfDistanceLabel,
-         nameOfOperatorLabel, tempLabel, stackView].forEach({
-            stackViewAll.addArrangedSubview($0)
-        })
-        
-        [chartView, stackViewAll].forEach({
-            self.addSubview($0)
-        })
-        
-        NSLayoutConstraint.activate([
-            chartView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            chartView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            chartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
-        ])
-        
-        NSLayoutConstraint.activate([
-            stackViewAll.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
-            stackViewAll.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
-            stackViewAll.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
-            stackViewAll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        ])
         
     }
     
-   */
+    private func setupUI() {
+        self.backgroundColor = Resources.Colors.backgroundColor
+        
+       // self.addSubview(firstColumnHeader)
+        
+        
+//        [firstColumn].forEach({
+//            self.addSubview($0)
+//        })
+        
+       
+        
+    }
 }
 
 
