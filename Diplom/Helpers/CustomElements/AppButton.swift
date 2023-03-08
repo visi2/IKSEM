@@ -29,6 +29,8 @@ final class AppButton: UIButton {
     private func setupUI() {
 
         self.setTitle(text, for: .normal)
+        self.titleLabel?.lineBreakMode = .byWordWrapping
+        self.titleLabel?.textAlignment = .center
         self.setTitleColor(.white, for: .normal)
         
         self.layer.cornerRadius = radius

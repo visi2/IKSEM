@@ -104,7 +104,7 @@ final class CalibrationView: UIView {
     
     private lazy var firstHalfstackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +114,15 @@ final class CalibrationView: UIView {
     private lazy var secondHalfstackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var tableStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -138,12 +147,12 @@ final class CalibrationView: UIView {
         return button
     }()
     
-    private lazy var stackViewAll: UIStackView = {
+    private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        stackView.alignment = .leading
-        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 20
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -166,29 +175,72 @@ final class CalibrationView: UIView {
     
     //MARK: - Setting UI Methods
     
-    private func createStack() {
+    private func setupUI() {
         
+        self.backgroundColor = Resources.Colors.backgroundColor
+        
+        let headersOfTable = createTable(views: [firstColumnHeaderView, secondColumnHeaderView, thirdColumnHeaderView, fourthColumnHeaderView, fifthColumnHeaderView, sixthColumnHeaderView])
+        let firstRowOfTable = createTable(views: [firstColumnTagsTView, secondColumnValueTView, thirdColumnValueTView])
+        let secondRowOfTable = createTable(views: [firstColumnTagsOView, secondColumnValueOView, thirdColumnValueOView])
+        let secondHalfOfTable = createTable(views: [fourthColumnValueView, fifthColumnValueView, sixthColumnValueView])
+        
+        [firstRowOfTable, secondRowOfTable].forEach({
+            firstHalfstackView.addArrangedSubview($0)
+        })
+        
+        [secondHalfOfTable].forEach({
+            secondHalfstackView.addArrangedSubview($0)
+        })
+        
+        [firstHalfstackView, secondHalfstackView].forEach({
+            tableStackView.addArrangedSubview($0)
+        })
+        
+        [takeSettingsButton, downloadCurrentTableButton, cancelButton].forEach({
+            buttonStackView.addArrangedSubview($0)
+        })
+        
+        [headersOfTable, tableStackView, buttonStackView].forEach({
+            self.addSubview($0)
+        })
+        
+        NSLayoutConstraint.activate([
+            headersOfTable.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headersOfTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            headersOfTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            headersOfTable.heightAnchor.constraint(equalToConstant: 20)
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableStackView.topAnchor.constraint(equalTo: headersOfTable.bottomAnchor),
+            tableStackView.leadingAnchor.constraint(equalTo: headersOfTable.leadingAnchor),
+            tableStackView.trailingAnchor.constraint(equalTo: headersOfTable.trailingAnchor),
+            tableStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35)
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: tableStackView.bottomAnchor, constant: 100),
+            buttonStackView.leadingAnchor.constraint(equalTo: tableStackView.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: tableStackView.trailingAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            
+        ])
+    }
+    
+    private func createTable(views: [UIView]) -> UIStackView {
         let stackView = UIStackView()
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        views.forEach({
+            stackView.addArrangedSubview($0)
+        })
         
-    }
-    
-    private func setupUI() {
-        self.backgroundColor = Resources.Colors.backgroundColor
-        
-       // self.addSubview(firstColumnHeader)
-        
-        
-//        [firstColumn].forEach({
-//            self.addSubview($0)
-//        })
-        
-       
-        
+        return stackView
     }
 }
 

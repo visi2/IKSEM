@@ -51,8 +51,8 @@ final class CalibrationTableColumn: UIView {
         textElements.indices.forEach { index in
             let textInRowLabel = UILabel()
             textInRowLabel.textColor = .white
+            textInRowLabel.textAlignment = .center
             textInRowLabel.text = textElements[index] ?? "---"
-            print(textElements[index])
             
             stackView.addArrangedSubview(textInRowLabel)
         }
@@ -60,10 +60,10 @@ final class CalibrationTableColumn: UIView {
         self.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+            stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
 
     }
