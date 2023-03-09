@@ -12,7 +12,7 @@ final class SettingsView: UIView {
     
     private lazy var namelabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Имя:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ final class SettingsView: UIView {
     
     private lazy var radiusMeasurelabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Радиус измерительного колеса, мм:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ final class SettingsView: UIView {
     
     private lazy var radiusForwardlabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Радиус ведущего колеса, мм:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +74,7 @@ final class SettingsView: UIView {
     
     private lazy var skollabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Значение проскальзывания, %:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +107,7 @@ final class SettingsView: UIView {
     
     private lazy var passwordlabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Пароль:"
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -76,7 +76,7 @@ final class MeasureView: UIView {
     
     private lazy var namelabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
         label.text = "ИКСЭМ"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ final class MeasureView: UIView {
     
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Resources.Colors.textColorUIlabel
         label.text = "0%"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -117,7 +117,6 @@ final class MeasureView: UIView {
     
     private lazy var stopButton: AppButton = {
         let button = AppButton(text: "Stop", radius: 20, type: 2)
-        button.backgroundColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -136,7 +135,7 @@ final class MeasureView: UIView {
     
     private lazy var onlabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Resources.Colors.textColorUIlabel
         label.text = "On"
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -145,7 +144,7 @@ final class MeasureView: UIView {
     
     private lazy var offlabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Resources.Colors.textColorUIlabel
         label.text = "Off"
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -224,7 +223,6 @@ final class MeasureView: UIView {
             stackView1.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 10),
             stackView1.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -10),
             stackView1.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1)
-            
         ])
         
         NSLayoutConstraint.activate([
@@ -255,6 +253,5 @@ final class MeasureView: UIView {
             stackView4.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             stackView4.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
-        
     }
 }

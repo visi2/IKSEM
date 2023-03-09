@@ -12,7 +12,7 @@ final class StorageView: UIView {
     
     private lazy var datelabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Дата записи протокола: "
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ final class StorageView: UIView {
     
     private lazy var serialNumberlabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Серийный номер ИКСЭМ:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ final class StorageView: UIView {
     
     private lazy var dateStartStopMeasurelabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Дата начала и окончания записи:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ final class StorageView: UIView {
     
     private lazy var averageKCLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Среднее значение КС:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,7 @@ final class StorageView: UIView {
     
     private lazy var averageSpeedLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Средняя скорость:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ final class StorageView: UIView {
     
     private lazy var valueOfSlippageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Значение проскальзывания:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +66,7 @@ final class StorageView: UIView {
     
     private lazy var valueOfDistanceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Пройденное расстояние:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ final class StorageView: UIView {
     
     private lazy var nameOfOperatorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Фамилия оператора:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ final class StorageView: UIView {
     
     private lazy var tempLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Температура:"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ final class StorageView: UIView {
     
     private lazy var listOfProtocolsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
         label.text = "Список протоколов:"
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -12,7 +12,8 @@ enum Resources {
         static var activeButton = UIColor(hexString: "#000080")
         static var backgroundColor = UIColor(hexString: "#002137")
         static var backgroundText = UIColor(hexString: "#808080")
-        static var dataBackgroundColor = UIColor(hexString: "#0000FF")
+        static var dataBackgroundColor = UIColor(hexString: "#293133")
+        static var textColorUIlabel = UIColor(hexString: "#42AAFF")
     }
     
     enum Images {
