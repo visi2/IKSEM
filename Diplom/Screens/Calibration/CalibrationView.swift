@@ -5,9 +5,9 @@ final class CalibrationView: UIView {
     
     private lazy var tableNamelabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexString: "#FFFFFF")
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Дата записи протокола: "
+        label.text = "Таблица калибровки"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -129,6 +129,34 @@ final class CalibrationView: UIView {
         return stackView
     }()
     
+    private lazy var momentLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.textColorUIlabel
+        label.textAlignment = .center
+        label.text = "Момент: ---"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var weightLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.textColorUIlabel
+        label.textAlignment = .center
+        label.text = "Вес: ."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var charactericticStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 20
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
     private lazy var takeSettingsButton: AppButton = {
         let button = AppButton(text: "Принять", radius: 10, type: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -184,6 +212,10 @@ final class CalibrationView: UIView {
         let secondRowOfTable = createTable(views: [firstColumnTagsOView, secondColumnValueOView, thirdColumnValueOView])
         let secondHalfOfTable = createTable(views: [fourthColumnValueView, fifthColumnValueView, sixthColumnValueView])
         
+        [momentLabel, weightLabel].forEach({
+            charactericticStackView.addArrangedSubview($0)
+        })
+        
         [firstRowOfTable, secondRowOfTable].forEach({
             firstHalfstackView.addArrangedSubview($0)
         })
@@ -200,16 +232,22 @@ final class CalibrationView: UIView {
             buttonStackView.addArrangedSubview($0)
         })
         
-        [headersOfTable, tableStackView, buttonStackView].forEach({
+        [tableNamelabel ,headersOfTable, tableStackView, charactericticStackView, buttonStackView].forEach({
             self.addSubview($0)
         })
         
         NSLayoutConstraint.activate([
-            headersOfTable.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            headersOfTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            headersOfTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            headersOfTable.heightAnchor.constraint(equalToConstant: 20)
-            
+            tableNamelabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            tableNamelabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            tableNamelabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            tableNamelabel.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            headersOfTable.topAnchor.constraint(equalTo: tableNamelabel.bottomAnchor, constant: 20),
+            headersOfTable.leadingAnchor.constraint(equalTo: tableNamelabel.leadingAnchor),
+            headersOfTable.trailingAnchor.constraint(equalTo: tableNamelabel.trailingAnchor),
+            headersOfTable.heightAnchor.constraint(equalTo: tableNamelabel.heightAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -217,15 +255,20 @@ final class CalibrationView: UIView {
             tableStackView.leadingAnchor.constraint(equalTo: headersOfTable.leadingAnchor),
             tableStackView.trailingAnchor.constraint(equalTo: headersOfTable.trailingAnchor),
             tableStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35)
-            
         ])
         
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: tableStackView.bottomAnchor, constant: 100),
-            buttonStackView.leadingAnchor.constraint(equalTo: tableStackView.leadingAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: tableStackView.trailingAnchor),
+            charactericticStackView.topAnchor.constraint(equalTo: tableStackView.bottomAnchor, constant: 20),
+            charactericticStackView.leadingAnchor.constraint(equalTo: tableStackView.leadingAnchor),
+            charactericticStackView.trailingAnchor.constraint(equalTo: tableStackView.trailingAnchor),
+            charactericticStackView.heightAnchor.constraint(equalTo: tableStackView.heightAnchor, multiplier: 0.2)
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: charactericticStackView.bottomAnchor, constant: 30),
+            buttonStackView.leadingAnchor.constraint(equalTo: charactericticStackView.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: charactericticStackView.trailingAnchor),
             buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-            
         ])
     }
     

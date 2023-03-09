@@ -33,9 +33,9 @@ final class BluetoothView: UIView {
     
     private lazy var previouslyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Previously connected devices"
+        label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.textColor = .white
+        label.text = "Previously connected devices"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
