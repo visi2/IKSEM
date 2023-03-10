@@ -39,7 +39,7 @@ final class SettingsView: UIView {
         return label
     }()
     
-    private lazy var radiusTextField1: UITextField = {
+    private lazy var radiusMeasureTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Введите радис в мм"
         textField.backgroundColor = Resources.Colors.backgroundText
@@ -60,7 +60,7 @@ final class SettingsView: UIView {
         return label
     }()
     
-    private lazy var radiusTextField2: UITextField = {
+    private lazy var radiusForwardTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Введите радис в мм"
         textField.backgroundColor = Resources.Colors.backgroundText
@@ -154,7 +154,7 @@ final class SettingsView: UIView {
     // MARK: - Private Properties
     
     private weak var controller: SettingsVC?
-    var activeFieldFrame: CGRect?
+    private var activeFieldFrame: CGRect?
     
     // MARK: - Init
     
@@ -171,6 +171,7 @@ final class SettingsView: UIView {
     //MARK: - Setting UI Methods
     
     private func setupUI() {
+        
         self.backgroundColor = Resources.Colors.backgroundColor
         
         self.addSubview(scrollView)
@@ -179,11 +180,11 @@ final class SettingsView: UIView {
             stackViewPassword.addArrangedSubview($0)
         })
         
-        [namelabel, nameTextField, radiusMeasurelabel, radiusTextField1, radiusForwardlabel, radiusTextField2,
-         skollabel, skolTextField, saveButton, downloadSettingsButton, passwordlabel, stackViewPassword].forEach({
+        [namelabel, nameTextField, radiusMeasurelabel, radiusMeasureTextField,
+         radiusForwardlabel, radiusForwardTextField, skollabel, skolTextField,
+         saveButton, downloadSettingsButton, passwordlabel, stackViewPassword].forEach({
             stackViewAll.addArrangedSubview($0)
         })
-        
         
         scrollView.addSubview(stackViewAll)
         
@@ -223,20 +224,18 @@ final class SettingsView: UIView {
         doneToolbar.items = items
         doneToolbar.sizeToFit()
         
-        nameTextField.inputAccessoryView = doneToolbar
-        radiusTextField1.inputAccessoryView = doneToolbar
-        radiusTextField2.inputAccessoryView = doneToolbar
-        skolTextField.inputAccessoryView = doneToolbar
-        passwordTextField.inputAccessoryView = doneToolbar
-        
+        [nameTextField, radiusMeasureTextField, radiusForwardTextField,
+         skolTextField, passwordTextField].forEach({
+            ($0).inputAccessoryView = doneToolbar
+        })
     }
     
     @objc private func doneButtonAction(){
-        nameTextField.resignFirstResponder()
-        radiusTextField1.resignFirstResponder()
-        radiusTextField2.resignFirstResponder()
-        skolTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
+        
+        [nameTextField, radiusMeasureTextField,radiusForwardTextField,
+         skolTextField, passwordTextField].forEach({
+            ($0).resignFirstResponder()
+        })
     }
     
     // MARK: - Public Methods

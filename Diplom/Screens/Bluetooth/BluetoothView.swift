@@ -40,6 +40,10 @@ final class BluetoothView: UIView {
         return label
     }()
     
+    // MARK: - Private Properties
+    
+    private weak var controller: BluetoothVC?
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -62,7 +66,9 @@ final class BluetoothView: UIView {
             stackView.addArrangedSubview($0)
         })
         
-        self.addSubview(stackView)
+        [stackView, clearButton, previouslyLabel ].forEach({
+            self.addSubview($0)
+        })
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -71,17 +77,12 @@ final class BluetoothView: UIView {
             stackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/10)
         ])
         
-        self.addSubview(clearButton)
-        
         NSLayoutConstraint.activate([
             clearButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             clearButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             clearButton.heightAnchor.constraint(equalTo: searchButton.heightAnchor),
             clearButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor),
-            
         ])
-        
-        self.addSubview(previouslyLabel)
         
         NSLayoutConstraint.activate([
             previouslyLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),

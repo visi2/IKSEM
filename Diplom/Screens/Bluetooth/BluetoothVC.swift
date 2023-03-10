@@ -1,8 +1,11 @@
 import UIKit
 
 final class BluetoothVC: UIViewController {
+    // MARK: - Visual Components
     
-    weak var bluetoothView: BluetoothView?
+    private var bluetoothView: BluetoothView { return self.view as! BluetoothView}
+    
+    // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()

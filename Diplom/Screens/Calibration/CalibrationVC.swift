@@ -1,7 +1,8 @@
 import UIKit
 
+
 class CalibrationVC: UIViewController {
-    // MARK: - Private Properties
+    // MARK: - Visual Components
 
     private var calibrationView: CalibrationView { return self.view as! CalibrationView}
     
@@ -16,8 +17,4 @@ class CalibrationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    // MARK: - Setting UI Methods
-    
-   
 }

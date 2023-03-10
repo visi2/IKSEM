@@ -1,11 +1,10 @@
 import UIKit
 
+
 class StorageVC: UIViewController {
-    
-    // MARK: - Private Properties
+    // MARK: - Visual Components
 
     private var settingsView: StorageView { return self.view as! StorageView}
-    
     
     // MARK: - Lifecycle
     
@@ -17,10 +16,5 @@ class StorageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-
-    // MARK: - Setting UI Methods
-    
-   
+    } 
 }

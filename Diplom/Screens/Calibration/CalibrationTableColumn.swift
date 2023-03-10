@@ -1,5 +1,6 @@
 import UIKit
 
+
 final class CalibrationTableColumn: UIView {
     private struct Constants {
         static let borderWidth: CGFloat = 2
@@ -65,9 +66,5 @@ final class CalibrationTableColumn: UIView {
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-
     }
-    
-    //MARK: - Private Methods
-    
 }

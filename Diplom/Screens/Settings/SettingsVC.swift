@@ -1,11 +1,10 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-    // MARK: - Private Properties
+    // MARK: - Visual Components
 
     private var settingsView: SettingsView { return self.view as! SettingsView}
-    var activeFieldFrame: CGRect?
-    
+    private var activeFieldFrame: CGRect?
     
     // MARK: - Deinitialization
 
@@ -27,7 +26,6 @@ class SettingsVC: UIViewController {
         addNotificationObserverKeyboard()
     }
     
-
     // MARK: - Setting UI Methods
     
     private func addNotificationObserverKeyboard() {
@@ -44,8 +42,6 @@ class SettingsVC: UIViewController {
             .userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else { return }
         
-        
-
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
@@ -61,7 +57,6 @@ class SettingsVC: UIViewController {
 
     @objc private func keyboardWillHide(notification: NSNotification) {
         let contentInsets: UIEdgeInsets = .zero
-        
         self.settingsView.setSize(contentInsets: contentInsets)
     }
 }

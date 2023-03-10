@@ -123,7 +123,7 @@ final class StorageView: UIView {
         return stackView
     }()
     
-    private lazy var stackViewAll: UIStackView = {
+    private lazy var allStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
@@ -152,6 +152,7 @@ final class StorageView: UIView {
     //MARK: - Setting UI Methods
     
     private func setupUI() {
+        
         self.backgroundColor = Resources.Colors.backgroundColor
         
         [showMapButton, halfSwitch].forEach({
@@ -161,10 +162,10 @@ final class StorageView: UIView {
         [datelabel, serialNumberlabel, dateStartStopMeasurelabel, averageKCLabel,
          averageSpeedLabel, valueOfSlippageLabel, valueOfDistanceLabel,
          nameOfOperatorLabel, tempLabel, stackView].forEach({
-            stackViewAll.addArrangedSubview($0)
+            allStackView.addArrangedSubview($0)
         })
         
-        [chartView, stackViewAll].forEach({
+        [chartView, allStackView].forEach({
             self.addSubview($0)
         })
         
@@ -176,14 +177,11 @@ final class StorageView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            stackViewAll.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
-            stackViewAll.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
-            stackViewAll.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
-            stackViewAll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            allStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
+            allStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
+            allStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
+            allStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
-        
     }
-    
-   
 }
 

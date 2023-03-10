@@ -1,11 +1,15 @@
 import UIKit
 
 final class MeasureVC: UIViewController {
+    // MARK: - Visual Components
     
-    weak var measureView: MeasureView?
+    private var measureView: MeasureView { return self.view as! MeasureView}
+    
+    // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
+        
         view = MeasureView()
     }
 }

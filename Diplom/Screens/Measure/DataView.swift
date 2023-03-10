@@ -1,6 +1,13 @@
 import UIKit
 
 final class DataView: UIView {
+    private struct Constants {
+        static let borderWidth: CGFloat = 2
+        static let cornerRadius: CGFloat = 15
+        static let shadowRadius: CGFloat = 6
+        static let shadowOpacity: Float = 1
+    }
+    
     //MARK: - Visual Components
     
     private lazy var namelabel: UILabel = {
@@ -57,8 +64,7 @@ final class DataView: UIView {
         return label
     }()
     
-    
-    private lazy var stackView1: UIStackView = {
+    private lazy var firstLineStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 5.0
@@ -77,8 +83,7 @@ final class DataView: UIView {
         return stackView
     }()
     
-    
-    private lazy var stackViewAll: UIStackView = {
+    private lazy var dataStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 2.0
@@ -105,27 +110,31 @@ final class DataView: UIView {
     private func setupUI() {
         
         self.backgroundColor = Resources.Colors.dataBackgroundColor
-        
+        self.layer.borderWidth = Constants.borderWidth
+        self.layer.borderColor = UIColor(hexString: "#B1B9FF").cgColor
+        self.layer.shadowColor = UIColor(hexString: "#B1B9FF").cgColor
+        self.layer.shadowOpacity = Constants.shadowOpacity
+        self.layer.shadowOffset = .zero
         
         [namelabel, datelabel, timelabel].forEach({
-            stackView1.addArrangedSubview($0)
+            firstLineStackView.addArrangedSubview($0)
         })
         
         [templabel, templabel].forEach({
             stackView2.addArrangedSubview($0)
         })
         
-        [stackView1, operatorlabel, stackView2].forEach({
-            stackViewAll.addArrangedSubview($0)
+        [firstLineStackView, operatorlabel, stackView2].forEach({
+            dataStackView.addArrangedSubview($0)
         })
         
-        self.addSubview(stackViewAll)
+        self.addSubview(dataStackView)
         
         NSLayoutConstraint.activate([
-            stackViewAll.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            stackViewAll.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            stackViewAll.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            stackViewAll.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+            dataStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            dataStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            dataStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            dataStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
         ])
     }
 }

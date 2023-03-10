@@ -1,5 +1,4 @@
 import UIKit
-import AVFoundation
 
 
 final class MeasureView: UIView {
@@ -12,35 +11,35 @@ final class MeasureView: UIView {
         return chartview
     }()
     
-    private lazy var barView1: UIView = {
+    private lazy var firstBarView: UIView = {
         let barView = UIView()
         barView.backgroundColor = .black
         barView.translatesAutoresizingMaskIntoConstraints = false
         return barView
     }()
     
-    private lazy var barView2: UIView = {
+    private lazy var secondBarView: UIView = {
         let barView = UIView()
         barView.backgroundColor = .black
         barView.translatesAutoresizingMaskIntoConstraints = false
         return barView
     }()
     
-    private lazy var barView3: UIView = {
+    private lazy var thirdBarView: UIView = {
         let barView = UIView()
         barView.backgroundColor = .black
         barView.translatesAutoresizingMaskIntoConstraints = false
         return barView
     }()
     
-    private lazy var barView4: UIView = {
+    private lazy var fourthBarView: UIView = {
         let barView = UIView()
         barView.backgroundColor = .black
         barView.translatesAutoresizingMaskIntoConstraints = false
         return barView
     }()
     
-    private lazy var stackView1: UIStackView = {
+    private lazy var barViewsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 5.0
@@ -99,7 +98,7 @@ final class MeasureView: UIView {
         return label
     }()
     
-    private lazy var stackView2: UIStackView = {
+    private lazy var dataStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 3.0
@@ -151,7 +150,7 @@ final class MeasureView: UIView {
         return label
     }()
     
-    private lazy var stackView3: UIStackView = {
+    private lazy var switchLightStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 2.0
@@ -161,7 +160,7 @@ final class MeasureView: UIView {
         return stackView
     }()
     
-    private lazy var stackView4: UIStackView = {
+    private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 2.0
@@ -186,27 +185,27 @@ final class MeasureView: UIView {
     //MARK: - Setting UI Methods
     
     private func setupUI() {
+        
         self.backgroundColor = Resources.Colors.backgroundColor
         
-        
-        [chartView, stackView1, scale, dataView, stackView2, stackView4].forEach({
+        [chartView, barViewsStackView, scale, dataView, dataStackView, buttonStackView].forEach({
             self.addSubview($0)
         })
         
-        [barView1, barView2, barView3, barView4].forEach({
-            stackView1.addArrangedSubview($0)
+        [firstBarView, secondBarView, thirdBarView, fourthBarView].forEach({
+            barViewsStackView.addArrangedSubview($0)
         })
         
         [namelabel, batteryView, statusLabel].forEach({
-            stackView2.addArrangedSubview($0)
+            dataStackView.addArrangedSubview($0)
         })
         
         [lightSwitch1, lightSwitch2].forEach({
-            stackView3.addArrangedSubview($0)
+            switchLightStackView.addArrangedSubview($0)
         })
         
-        [startButton, stackView3, stopButton].forEach({
-            stackView4.addArrangedSubview($0)
+        [startButton, switchLightStackView, stopButton].forEach({
+            buttonStackView.addArrangedSubview($0)
         })
         // self.stackView4.addArrangedSubview(offlabel)
         // self.stackView4.addArrangedSubview(onlabel)
@@ -219,39 +218,38 @@ final class MeasureView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            stackView1.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
-            stackView1.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 10),
-            stackView1.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -10),
-            stackView1.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1)
+            barViewsStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
+            barViewsStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 10),
+            barViewsStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -10),
+            barViewsStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1)
         ])
         
         NSLayoutConstraint.activate([
-            scale.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: 5),
-            scale.leadingAnchor.constraint(equalTo: stackView1.leadingAnchor, constant: -5),
-            scale.trailingAnchor.constraint(equalTo: stackView1.trailingAnchor, constant: 10),
-            scale.heightAnchor.constraint(equalTo: barView1.heightAnchor)
+            scale.topAnchor.constraint(equalTo: barViewsStackView.bottomAnchor, constant: 5),
+            scale.leadingAnchor.constraint(equalTo: barViewsStackView.leadingAnchor, constant: -5),
+            scale.trailingAnchor.constraint(equalTo: barViewsStackView.trailingAnchor, constant: 10),
+            scale.heightAnchor.constraint(equalTo: firstBarView.heightAnchor)
         ])
         
         NSLayoutConstraint.activate([
             dataView.topAnchor.constraint(equalTo: scale.bottomAnchor, constant: 20),
-            dataView.leadingAnchor.constraint(equalTo: stackView1.leadingAnchor),
-            dataView.trailingAnchor.constraint(equalTo: stackView1.trailingAnchor),
+            dataView.leadingAnchor.constraint(equalTo: barViewsStackView.leadingAnchor),
+            dataView.trailingAnchor.constraint(equalTo: barViewsStackView.trailingAnchor),
             dataView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)
         ])
         
-        
         NSLayoutConstraint.activate([
-            stackView2.topAnchor.constraint(equalTo: dataView.bottomAnchor, constant: 10),
-            stackView2.widthAnchor.constraint(equalTo: dataView.widthAnchor, multiplier: 0.7),
-            stackView2.heightAnchor.constraint(equalTo: stackView2.widthAnchor, multiplier: 0.2),
-            stackView2.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            dataStackView.topAnchor.constraint(equalTo: dataView.bottomAnchor, constant: 10),
+            dataStackView.widthAnchor.constraint(equalTo: dataView.widthAnchor, multiplier: 0.7),
+            dataStackView.heightAnchor.constraint(equalTo: dataStackView.widthAnchor, multiplier: 0.2),
+            dataStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            stackView4.topAnchor.constraint(equalTo: stackView2.bottomAnchor, constant: 50),
-            stackView4.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            stackView4.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            stackView4.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
+            buttonStackView.topAnchor.constraint(equalTo: dataStackView.bottomAnchor, constant: 50),
+            buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
     }
 }

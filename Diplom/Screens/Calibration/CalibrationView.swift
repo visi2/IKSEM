@@ -1,5 +1,6 @@
 import UIKit
 
+
 final class CalibrationView: UIView {
     //MARK: - Visual Components
     
@@ -265,7 +266,7 @@ final class CalibrationView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: charactericticStackView.bottomAnchor, constant: 30),
+            buttonStackView.heightAnchor.constraint(equalTo: tableStackView.heightAnchor, multiplier: 0.5),
             buttonStackView.leadingAnchor.constraint(equalTo: charactericticStackView.leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: charactericticStackView.trailingAnchor),
             buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
