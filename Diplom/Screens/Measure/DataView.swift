@@ -1,5 +1,6 @@
 import UIKit
 
+
 final class DataView: UIView {
     private struct Constants {
         static let borderWidth: CGFloat = 2

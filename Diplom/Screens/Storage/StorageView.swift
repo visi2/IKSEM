@@ -1,5 +1,6 @@
 import UIKit
 
+
 final class StorageView: UIView {
     //MARK: - Visual Components
     
