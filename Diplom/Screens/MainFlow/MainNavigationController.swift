@@ -1,5 +1,5 @@
 import UIKit
-
+import CoreBluetooth
 
 enum Tabs: Int {
     case measure = 1

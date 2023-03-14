@@ -1,17 +1,23 @@
 import UIKit
 
+protocol BluetoothViewOutput {
+    func send()
+    func search()
+}
 
 final class BluetoothView: UIView {
     //MARK: - Visual Components
     
     private lazy var searchButton: AppButton = {
         let button = AppButton(text: "Device search", radius: 15, type: 3)
+        button.addTarget(self, action: #selector(searchPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var disconectButton: AppButton = {
         let button = AppButton(text: "Disconnect", radius: 15, type: 3)
+        button.addTarget(self, action: #selector(searchPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,13 +49,13 @@ final class BluetoothView: UIView {
     
     // MARK: - Private Properties
     
-    private weak var controller: BluetoothVC?
+    private var controller: BluetoothVC?
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+        controller = BluetoothVC()
         setupUI()
     }
     
@@ -91,5 +97,18 @@ final class BluetoothView: UIView {
             previouslyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
+    
+
+    // MARK: - Actions
+
+    @objc private func searchPeripheral() {
+        controller?.search()
+    }
+
+    @objc private func send() {
+        controller?.send()
+    }
 }
+
+
 
