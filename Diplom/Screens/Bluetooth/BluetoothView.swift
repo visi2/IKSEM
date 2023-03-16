@@ -8,11 +8,6 @@ protocol BluetoothViewOutput {
 
 final class BluetoothView: UIView {
     //MARK: - Visual Components
-    private lazy var table: BluetoothTableView = {
-        let table = BluetoothTableView()
-        table.view.translatesAutoresizingMaskIntoConstraints = false
-        return table
-    }()
     
     private lazy var searchButton: AppButton = {
         let button = AppButton(text: "Device search", radius: 15, type: 3)
@@ -36,6 +31,13 @@ final class BluetoothView: UIView {
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    private lazy var table: BluetoothTableView = {
+        let table = BluetoothTableView()
+        table.tableView.translatesAutoresizingMaskIntoConstraints = false
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
     }()
     
     private lazy var clearButton: AppButton = {
@@ -80,7 +82,7 @@ final class BluetoothView: UIView {
             stackView.addArrangedSubview($0)
         })
         
-        [stackView, table.view, previouslyLabel, clearButton ].forEach({
+        [stackView, table, previouslyLabel, clearButton ].forEach({
             self.addSubview($0)
         })
         
@@ -98,20 +100,26 @@ final class BluetoothView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            table.view.topAnchor.constraint(equalTo: previouslyLabel.bottomAnchor, constant: 50),
-            table.view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            table.view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
-        
-        NSLayoutConstraint.activate([
             clearButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             clearButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             clearButton.heightAnchor.constraint(equalTo: searchButton.heightAnchor),
             clearButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor),
         ])
+        
+        NSLayoutConstraint.activate([
+            table.topAnchor.constraint(equalTo: previouslyLabel.bottomAnchor, constant: 10),
+            table.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            table.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            table.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            table.tableView.topAnchor.constraint(equalTo: table.topAnchor),
+            table.tableView.leadingAnchor.constraint(equalTo: table.leadingAnchor),
+            table.tableView.trailingAnchor.constraint(equalTo: table.trailingAnchor),
+            table.tableView.bottomAnchor.constraint(equalTo: table.bottomAnchor)
+        ])
     }
-    
-    
     // MARK: - Actions
     
 }

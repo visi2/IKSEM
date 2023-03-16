@@ -15,7 +15,7 @@ final class BluetoothManager: NSObject {
     private var characteristic: CBCharacteristic?
     private var manager: CBCentralManager?
     private let serviceUUID = CBUUID(string: "0xFFE0")
-    private let periphealUUID = CBUUID(string: "b06e20c8-82d0-9378-7b6c-ccb088a69669")
+    private let periphealUUID = CBUUID(string: "b06e20c8-82d0-9378-7b6c-ccb088a69669")//9
     
     //MARK: - Init
     
@@ -33,6 +33,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
+        BluetoothTableView.bluetoothPeripheralArray.append("\(peripheral.name)")
         if peripheral.identifier.uuidString == periphealUUID.uuidString {
             manager?.stopScan()
             peripheal = peripheral

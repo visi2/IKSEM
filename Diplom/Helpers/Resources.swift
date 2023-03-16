@@ -15,6 +15,7 @@ enum Resources {
         static var backgroundText = UIColor(hexString: "#808080")
         static var dataBackgroundColor = UIColor(hexString: "#293133")
         static var textColorUIlabel = UIColor(hexString: "#42AAFF")
+        static var bluetoothtableViewBackgroundColor = UIColor(hexString: "#483D8B")
     }
     
     enum Images {

@@ -107,7 +107,6 @@
 		3D4A5B1629804019005550E1 /* Diplom */ = {
 			isa = PBXGroup;
 			children = (
-				3D4A5B252980401A005550E1 /* Info.plist */,
 				3D4A5B3F29804D66005550E1 /* Helpers */,
 				3D4A5B2E29804172005550E1 /* API */,
 				3D4A5B2D29804163005550E1 /* Screens */,
@@ -120,6 +119,7 @@
 		3D4A5B2B29804039005550E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D4A5B252980401A005550E1 /* Info.plist */,
 				3D4A5B202980401A005550E1 /* Assets.xcassets */,
 				3D4A5B222980401A005550E1 /* LaunchScreen.storyboard */,
 			);
@@ -534,7 +534,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YXMR2NC7BY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Diplom/Info.plist;
+				INFOPLIST_FILE = Diplom/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
@@ -565,7 +565,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YXMR2NC7BY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Diplom/Info.plist;
+				INFOPLIST_FILE = Diplom/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
