@@ -1,29 +1,35 @@
 import UIKit
 
 protocol BluetoothViewOutput {
-    func send()
-    func search()
+    func searchPeripheral()
+    func disconnectPeripheral()
+    func clearListOfPeripherals()
 }
 
 final class BluetoothView: UIView {
     //MARK: - Visual Components
+    private lazy var table: BluetoothTableView = {
+        let table = BluetoothTableView()
+        table.view.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
     
     private lazy var searchButton: AppButton = {
         let button = AppButton(text: "Device search", radius: 15, type: 3)
-        button.addTarget(self, action: #selector(searchPeripheral), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(BluetoothVC.searchPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var disconectButton: AppButton = {
         let button = AppButton(text: "Disconnect", radius: 15, type: 3)
-        button.addTarget(self, action: #selector(searchPeripheral), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(BluetoothVC.disconnectPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var stackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.spacing = 20
@@ -34,6 +40,7 @@ final class BluetoothView: UIView {
     
     private lazy var clearButton: AppButton = {
         let button = AppButton(text: "Clear list", radius: 15, type: 3)
+        button.addTarget(nil, action: #selector(BluetoothVC.clearListOfPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -73,7 +80,7 @@ final class BluetoothView: UIView {
             stackView.addArrangedSubview($0)
         })
         
-        [stackView, clearButton, previouslyLabel ].forEach({
+        [stackView, table.view, previouslyLabel, clearButton ].forEach({
             self.addSubview($0)
         })
         
@@ -85,29 +92,28 @@ final class BluetoothView: UIView {
         ])
         
         NSLayoutConstraint.activate([
+            previouslyLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            previouslyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            previouslyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            table.view.topAnchor.constraint(equalTo: previouslyLabel.bottomAnchor, constant: 50),
+            table.view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            table.view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
             clearButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             clearButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             clearButton.heightAnchor.constraint(equalTo: searchButton.heightAnchor),
             clearButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor),
         ])
-        
-        NSLayoutConstraint.activate([
-            previouslyLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-            previouslyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            previouslyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
     }
     
-
+    
     // MARK: - Actions
-
-    @objc private func searchPeripheral() {
-        controller?.search()
-    }
-
-    @objc private func send() {
-        controller?.send()
-    }
+    
 }
 
 

@@ -30,6 +30,7 @@
 		3DB1943329A3D9D80070DF3A /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */; };
 		3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFA29A76E0500FA4A7D /* StorageView.swift */; };
 		3DC712E0298175E400AE8960 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC712DF298175E400AE8960 /* MeasureView.swift */; };
+		3DF1BFB029C329BD00CE8F98 /* BluetoothTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1BFAF29C329BD00CE8F98 /* BluetoothTableView.swift */; };
 		3DF781412993EC78003E0E46 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF781402993EC78003E0E46 /* DataView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		3DB91FFA29A76E0500FA4A7D /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationView.swift; sourceTree = "<group>"; };
 		3DC712DF298175E400AE8960 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
+		3DF1BFAF29C329BD00CE8F98 /* BluetoothTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableView.swift; sourceTree = "<group>"; };
 		3DF781402993EC78003E0E46 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +190,7 @@
 				3D4A5B372980474F005550E1 /* BluetoothVC.swift */,
 				3D4173AE298B057B003E27F5 /* BluetoothView.swift */,
 				3D5423B029C0D737000E76CA /* BluetoothPresenter.swift */,
+				3DF1BFB129C329CA00CE8F98 /* BluetoothTableView */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -227,6 +230,14 @@
 				3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3DF1BFB129C329CA00CE8F98 /* BluetoothTableView */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1BFAF29C329BD00CE8F98 /* BluetoothTableView.swift */,
+			);
+			path = BluetoothTableView;
 			sourceTree = "<group>";
 		};
 		92A7C81F5EEEABF9CC751379 /* Pods */ = {
@@ -364,6 +375,7 @@
 				3D4A5B1C29804019005550E1 /* MainNavigationController.swift in Sources */,
 				3D4A5B3629804705005550E1 /* MeasureVC.swift in Sources */,
 				3D4A5B1829804019005550E1 /* AppDelegate.swift in Sources */,
+				3DF1BFB029C329BD00CE8F98 /* BluetoothTableView.swift in Sources */,
 				3D4A5B3C2980489A005550E1 /* StorageVC.swift in Sources */,
 				3D4A5B3A29804888005550E1 /* CalibrationVC.swift in Sources */,
 				3D4A5B4129804D73005550E1 /* Resources.swift in Sources */,
@@ -524,6 +536,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diplom/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -553,6 +567,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diplom/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

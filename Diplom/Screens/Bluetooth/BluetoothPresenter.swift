@@ -1,15 +1,11 @@
 import Foundation
-import CoreBluetooth
 
 class BluetoothPresenter {
     
-    private var bluetoothManager: BluetoothManager?
-    private var peripheal: CBPeripheral?
+    private var bluetoothManager = BluetoothManager()
     
     //MARK: - Init
-    init() {
-        self.bluetoothManager = BluetoothManager()
-    }
+    init() {}
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -17,12 +13,16 @@ class BluetoothPresenter {
     
 }
 
-extension BluetoothPresenter: BluetoothViewOutput {
-    func search() {
-        BluetoothManager.sharedInstance.manager?.scanForPeripherals(withServices: nil)
+extension BluetoothPresenter: BluetoothViewControllerOutput {
+    func searchPeripheral() {
+        bluetoothManager.searchPeripheral()
     }
-
-    func send() {
-        BluetoothManager.sharedInstance.send(text: "1")
+    
+    func disconnectPeripheral() {
+        bluetoothManager.disconnectPeripheral()
+    }
+    
+    func clearListOfPeripherals() {
+        //view
     }
 }

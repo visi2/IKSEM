@@ -1,9 +1,10 @@
 import UIKit
 
 
-protocol BluetoothVCOutput {
-    func search()
-    func send()
+protocol BluetoothViewControllerOutput {
+    func searchPeripheral()
+    func disconnectPeripheral()
+    func clearListOfPeripherals()
 }
 
 
@@ -11,12 +12,12 @@ final class BluetoothVC: UIViewController {
     // MARK: - Visual Components
     
     private var bluetoothView: BluetoothView { return self.view as! BluetoothView}
-    private var presenter: BluetoothVCOutput?
+    private var presenter: BluetoothPresenter?
     
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.presenter = BluetoothPresenter() as? any BluetoothVCOutput
+        self.presenter = BluetoothPresenter()
     }
     
     required init?(coder: NSCoder) {
@@ -30,17 +31,19 @@ final class BluetoothVC: UIViewController {
         
         view = BluetoothView()
     }
+    
+    @objc  func searchPeripheral() {
+        presenter?.searchPeripheral()
+    }
+
+    @objc  func disconnectPeripheral() {
+        presenter?.disconnectPeripheral()
+    }
+    
+    @objc  func clearListOfPeripheral() {
+        presenter?.clearListOfPeripherals()
+    }
+
 }
 
-extension BluetoothVC: BluetoothViewOutput {
-    func send() {
-        presenter?.send()
-    }
-    
-    func search() {
-        presenter?.search()
-    }
-    
-    
-    
-}
+

@@ -2,44 +2,43 @@ import UIKit
 import CoreBluetooth
 
 
-class BluetoothManager: NSObject, CBCentralManagerDelegate {
+protocol APIBluetoothManager {
+    func searchPeripheral()
+    func disconnectPeripheral()
+    func sendToPeripheral(text: String)
+}
+
+final class BluetoothManager: NSObject {
     //MARK: - Private Properties
-     static let sharedInstance = BluetoothManager()
-    var peripheal: CBPeripheral?
-    var myCharacteristic: CBCharacteristic?
-    var manager: CBCentralManager?
-    let dict = [CBCentralManagerOptionShowPowerAlertKey: 1]
-
-    let serviceUUID = CBUUID(string: "0xFFE0")
-    let periphealUUID = CBUUID(string: "b06e20c8-82d0-9378-7b6c-ccb088a69669")
-
+    
+    private var peripheal: CBPeripheral?
+    private var characteristic: CBCharacteristic?
+    private var manager: CBCentralManager?
+    private let serviceUUID = CBUUID(string: "0xFFE0")
+    private let periphealUUID = CBUUID(string: "b06e20c8-82d0-9378-7b6c-ccb088a69669")
+    
     //MARK: - Init
     
     override init() {
         super.init()
-        self.manager = CBCentralManager(delegate: self, queue: nil, options: dict)
- 
+        self.manager = CBCentralManager(delegate: self, queue: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    func send(text: String) {
-        if (peripheal != nil && myCharacteristic != nil) {
-            let data = text.data(using: .unicode)
-            peripheal!.writeValue(data!,  for: myCharacteristic!, type: CBCharacteristicWriteType.withoutResponse)
-        }
-    }
+}
+
+extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
         if peripheral.identifier.uuidString == periphealUUID.uuidString {
+            manager?.stopScan()
             peripheal = peripheral
             peripheal?.delegate = self
             manager?.connect(peripheal!, options: nil)
-            manager?.stopScan()
+            
             print(peripheral)
         }
     }
@@ -59,14 +58,14 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices([serviceUUID])
-        print("Connected to " +  peripheral.name!)  
+        print("Connected to " +  peripheral.name!)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from " +  peripheral.name!)
         
         peripheal = nil
-        myCharacteristic = nil
+        characteristic = nil
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -74,7 +73,9 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate {
     }
 }
 
+
 extension BluetoothManager: CBPeripheralDelegate {
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         for service in services {
@@ -84,6 +85,28 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
-        myCharacteristic = characteristics[0]
+        characteristic = characteristics[0]
     }
+}
+
+
+extension BluetoothManager: APIBluetoothManager {
+    func searchPeripheral() {
+        manager?.scanForPeripherals(withServices: nil)
+    }
+    
+    func disconnectPeripheral() {
+        guard let peripheal = peripheal else {return}
+        manager?.cancelPeripheralConnection(peripheal)
+    }
+    
+    func sendToPeripheral(text: String) {
+        if (peripheal != nil && characteristic != nil) {
+            let data = text.data(using: .unicode)
+            peripheal!.writeValue(data!,  for: characteristic!, type: CBCharacteristicWriteType.withoutResponse)
+           
+        }
+    }
+    
+    
 }
