@@ -1,18 +1,21 @@
 import UIKit
 
 
-protocol BluetoothViewControllerOutput {
+protocol BluetoothViewControllerOutput: AnyObject {
     func searchPeripheral()
     func disconnectPeripheral()
     func clearListOfPeripherals()
+    func setupPresenter(viewController: UIViewController)
 }
+
+
 
 
 final class BluetoothVC: UIViewController {
     // MARK: - Visual Components
     
     private var bluetoothView: BluetoothView { return self.view as! BluetoothView}
-    private var presenter: BluetoothPresenter?
+    private var presenter: BluetoothViewControllerOutput?
     
     // MARK: - Initialization
     init() {
@@ -32,7 +35,10 @@ final class BluetoothVC: UIViewController {
         view = BluetoothView()
     }
     
+    //MARK: - Actions
+    
     @objc  func searchPeripheral() {
+        setupPresenter(viewController: self)
         presenter?.searchPeripheral()
     }
 
@@ -43,7 +49,8 @@ final class BluetoothVC: UIViewController {
     @objc  func clearListOfPeripheral() {
         presenter?.clearListOfPeripherals()
     }
-
+    
+    func setupPresenter(viewController: UIViewController) {
+        presenter?.setupPresenter(viewController: viewController)
+    }
 }
-
-

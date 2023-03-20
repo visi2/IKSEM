@@ -5,7 +5,7 @@ protocol TableViewInput {
 }
 
 final class BluetoothTableView: UIView, UITableViewDelegate, UITableViewDataSource {
-    //MARK: - Piblic Properties
+    //MARK: - Public Properties
     
     public var tableView: UITableView!
     public static var bluetoothPeripheralArray: Array<String> = []
@@ -23,19 +23,25 @@ final class BluetoothTableView: UIView, UITableViewDelegate, UITableViewDataSour
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
-        reload()
-        setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
+    func setup() {
         
         tableView.backgroundColor = Resources.Colors.bluetoothtableViewBackgroundColor
         self.backgroundColor = Resources.Colors.backgroundColor
         self.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
     
     // MARK: - Table view data source
@@ -45,14 +51,14 @@ final class BluetoothTableView: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BluetoothTableView.bluetoothPeripheralArray.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         cell.backgroundColor = Resources.Colors.bluetoothtableViewBackgroundColor
         
-        cell.textLabel?.text = BluetoothTableView.bluetoothPeripheralArray[indexPath.row]
+        cell.textLabel?.text = "cell"
         
         return cell
     }

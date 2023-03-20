@@ -1,6 +1,6 @@
 import UIKit
 
-protocol BluetoothViewOutput {
+protocol BluetoothViewOutput: AnyObject {
     func searchPeripheral()
     func disconnectPeripheral()
     func clearListOfPeripherals()
@@ -31,13 +31,6 @@ final class BluetoothView: UIView {
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
-    }()
-    
-    private lazy var table: BluetoothTableView = {
-        let table = BluetoothTableView()
-        table.tableView.translatesAutoresizingMaskIntoConstraints = false
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
     }()
     
     private lazy var clearButton: AppButton = {
@@ -82,7 +75,7 @@ final class BluetoothView: UIView {
             stackView.addArrangedSubview($0)
         })
         
-        [stackView, table, previouslyLabel, clearButton ].forEach({
+        [stackView, previouslyLabel, clearButton ].forEach({
             self.addSubview($0)
         })
         
@@ -105,24 +98,9 @@ final class BluetoothView: UIView {
             clearButton.heightAnchor.constraint(equalTo: searchButton.heightAnchor),
             clearButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor),
         ])
-        
-        NSLayoutConstraint.activate([
-            table.topAnchor.constraint(equalTo: previouslyLabel.bottomAnchor, constant: 10),
-            table.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            table.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            table.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -20)
-        ])
-        
-        NSLayoutConstraint.activate([
-            table.tableView.topAnchor.constraint(equalTo: table.topAnchor),
-            table.tableView.leadingAnchor.constraint(equalTo: table.leadingAnchor),
-            table.tableView.trailingAnchor.constraint(equalTo: table.trailingAnchor),
-            table.tableView.bottomAnchor.constraint(equalTo: table.bottomAnchor)
-        ])
     }
-    // MARK: - Actions
-    
 }
+
 
 
 

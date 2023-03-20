@@ -22,7 +22,9 @@
 		3D4A5B3E298048B2005550E1 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B3D298048B2005550E1 /* SettingsVC.swift */; };
 		3D4A5B4129804D73005550E1 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B4029804D73005550E1 /* Resources.swift */; };
 		3D4A5B4429805458005550E1 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A5B4329805458005550E1 /* UIColor + Extension.swift */; };
+		3D4EBBD629C874060081BAAE /* DetailBluetoothViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4EBBD529C874060081BAAE /* DetailBluetoothViewVC.swift */; };
 		3D5423B129C0D737000E76CA /* BluetoothPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5423B029C0D737000E76CA /* BluetoothPresenter.swift */; };
+		3D56B06029C885CC00ED381B /* DetailBluetoothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56B05F29C885CC00ED381B /* DetailBluetoothView.swift */; };
 		3D5ADDD529A8C2E1009B46BE /* CalibrationTableColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */; };
 		3D5ADDD629A8D8FE009B46BE /* CalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */; };
 		3D7699E0299F76A10066B790 /* SettigsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7699DF299F76A10066B790 /* SettigsView.swift */; };
@@ -54,7 +56,9 @@
 		3D4A5B3D298048B2005550E1 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3D4A5B4029804D73005550E1 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		3D4A5B4329805458005550E1 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		3D4EBBD529C874060081BAAE /* DetailBluetoothViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBluetoothViewVC.swift; sourceTree = "<group>"; };
 		3D5423B029C0D737000E76CA /* BluetoothPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPresenter.swift; sourceTree = "<group>"; };
+		3D56B05F29C885CC00ED381B /* DetailBluetoothView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBluetoothView.swift; sourceTree = "<group>"; };
 		3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationTableColumn.swift; sourceTree = "<group>"; };
 		3D7699DF299F76A10066B790 /* SettigsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettigsView.swift; sourceTree = "<group>"; };
 		3DAEC8A729BF01390080B157 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				3DF1BFAF29C329BD00CE8F98 /* BluetoothTableView.swift */,
+				3D4EBBD529C874060081BAAE /* DetailBluetoothViewVC.swift */,
+				3D56B05F29C885CC00ED381B /* DetailBluetoothView.swift */,
 			);
 			path = BluetoothTableView;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 			files = (
 				3D4A5B3E298048B2005550E1 /* SettingsVC.swift in Sources */,
 				3D4A5B1C29804019005550E1 /* MainNavigationController.swift in Sources */,
+				3D4EBBD629C874060081BAAE /* DetailBluetoothViewVC.swift in Sources */,
 				3D4A5B3629804705005550E1 /* MeasureVC.swift in Sources */,
 				3D4A5B1829804019005550E1 /* AppDelegate.swift in Sources */,
 				3DF1BFB029C329BD00CE8F98 /* BluetoothTableView.swift in Sources */,
@@ -390,6 +397,7 @@
 				3D4173AF298B057B003E27F5 /* BluetoothView.swift in Sources */,
 				3D5423B129C0D737000E76CA /* BluetoothPresenter.swift in Sources */,
 				3DAEC8A829BF01390080B157 /* BluetoothManager.swift in Sources */,
+				3D56B06029C885CC00ED381B /* DetailBluetoothView.swift in Sources */,
 				3D7699E0299F76A10066B790 /* SettigsView.swift in Sources */,
 				3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */,
 				3DF781412993EC78003E0E46 /* DataView.swift in Sources */,
