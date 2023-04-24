@@ -24,7 +24,7 @@ enum Resources {
         static var calibration = UIImage(systemName: "vial.viewfinder")//scope
         static var storage = UIImage(systemName: "folder")
         static var settings = UIImage(systemName: "gearshape")
-        static var battery = UIImage(systemName: "battery.0")
+        static var battery = UIImage(systemName: "battery.100")
     }
     
     enum Strings {

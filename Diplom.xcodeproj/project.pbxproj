@@ -27,6 +27,7 @@
 		3D5ADDD529A8C2E1009B46BE /* CalibrationTableColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */; };
 		3D5ADDD629A8D8FE009B46BE /* CalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */; };
 		3D7699E0299F76A10066B790 /* SettigsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7699DF299F76A10066B790 /* SettigsView.swift */; };
+		3D8302BE29F715FE005448CA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8302BD29F715FE005448CA /* ChartView.swift */; };
 		3DAD4F4D29F7003000E58CD2 /* MeasurePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD4F4C29F7003000E58CD2 /* MeasurePresenter.swift */; };
 		3DAEC8A829BF01390080B157 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAEC8A729BF01390080B157 /* BluetoothManager.swift */; };
 		3DB1943329A3D9D80070DF3A /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */; };
@@ -59,6 +60,7 @@
 		3D5423B029C0D737000E76CA /* BluetoothPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPresenter.swift; sourceTree = "<group>"; };
 		3D5ADDD429A8C2E1009B46BE /* CalibrationTableColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationTableColumn.swift; sourceTree = "<group>"; };
 		3D7699DF299F76A10066B790 /* SettigsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettigsView.swift; sourceTree = "<group>"; };
+		3D8302BD29F715FE005448CA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		3DAD4F4C29F7003000E58CD2 /* MeasurePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurePresenter.swift; sourceTree = "<group>"; };
 		3DAEC8A729BF01390080B157 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Extension.swift"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			children = (
 				3DC712DF298175E400AE8960 /* MeasureView.swift */,
 				3DF781402993EC78003E0E46 /* DataView.swift */,
+				3D8302BD29F715FE005448CA /* ChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				3D7699E0299F76A10066B790 /* SettigsView.swift in Sources */,
 				3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */,
 				3DF781412993EC78003E0E46 /* DataView.swift in Sources */,
+				3D8302BE29F715FE005448CA /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +573,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -600,7 +604,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

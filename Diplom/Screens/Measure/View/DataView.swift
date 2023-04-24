@@ -15,7 +15,7 @@ final class DataView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "ИКСЭМ №: "
+        label.text = "ИК №: 1"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -24,7 +24,12 @@ final class DataView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "Дата: "
+        label.font = UIFont(name: "Helvetica", size: 15)
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: today)
+        label.text = "Дата: \(dateString)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,7 +38,12 @@ final class DataView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "Время: "
+        label.font = UIFont(name: "Helvetica", size: 15)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let now = Date()
+        let timeString = dateFormatter.string(from: now)
+        label.text = "Время: \(timeString)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,7 +52,7 @@ final class DataView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "Оператор: "
+        label.text = "Оператор: Андрей Кваша"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,7 +61,7 @@ final class DataView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "Tемпература: "
+        label.text = "Tемпература: 25 °C"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,7 +79,7 @@ final class DataView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 5.0
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()

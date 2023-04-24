@@ -1,12 +1,19 @@
 import UIKit
 
+protocol MeasureViewOutput: AnyObject {
+    func start()
+    func stop()
+}
+
+protocol MeasureViewInput: AnyObject {
+    func showPoint(point: CGFloat)
+}
 
 final class MeasureView: UIView {
     //MARK: - Visual Components
     
-    private lazy var chartView: UIImageView = {
-        let chartview = UIImageView()
-        chartview.image = UIImage(named: "fake.png")
+   private lazy var chartView: RealTimeGraphView = {
+        let chartview = RealTimeGraphView()
         chartview.translatesAutoresizingMaskIntoConstraints = false
         return chartview
     }()
@@ -93,7 +100,7 @@ final class MeasureView: UIView {
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
-        label.text = "0%"
+        label.text = "100%"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -110,12 +117,14 @@ final class MeasureView: UIView {
     
     private lazy var startButton: AppButton = {
         let button = AppButton(text: "Start", radius: 20, type: 1)
+        button.addTarget(nil, action: #selector(MeasureVC.startVC), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var stopButton: AppButton = {
         let button = AppButton(text: "Stop", radius: 20, type: 2)
+        button.addTarget(nil, action: #selector(MeasureVC.stopVC), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -251,5 +260,11 @@ final class MeasureView: UIView {
             buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
+    }
+}
+
+extension MeasureView: MeasureViewInput {
+    func showPoint(point: CGFloat) {
+        chartView.addDataPoint(point)
     }
 }
