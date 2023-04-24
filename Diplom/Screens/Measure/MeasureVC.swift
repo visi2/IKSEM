@@ -6,6 +6,10 @@ final class MeasureVC: UIViewController {
     
     private var measureView: MeasureView { return self.view as! MeasureView}
     
+    // MARK: - Public Properties
+
+    weak var presenter: (AnyObject)?
+    
     // MARK: - Lifecycle
     
     override func loadView() {

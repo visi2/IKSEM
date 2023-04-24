@@ -1,17 +1,16 @@
 import UIKit
 
 protocol BluetoothViewOutput: AnyObject {
-    func searchPeripheral()
+    func connectPeripheral()
     func disconnectPeripheral()
-    func clearListOfPeripherals()
 }
 
 final class BluetoothView: UIView {
     //MARK: - Visual Components
     
     private lazy var searchButton: AppButton = {
-        let button = AppButton(text: "Device search", radius: 15, type: 3)
-        button.addTarget(nil, action: #selector(BluetoothVC.searchPeripheral), for: .touchUpInside)
+        let button = AppButton(text: "Device connect", radius: 15, type: 3)
+        button.addTarget(nil, action: #selector(BluetoothVC.connectPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -31,22 +30,6 @@ final class BluetoothView: UIView {
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
-    }()
-    
-    private lazy var clearButton: AppButton = {
-        let button = AppButton(text: "Clear list", radius: 15, type: 3)
-        button.addTarget(nil, action: #selector(BluetoothVC.clearListOfPeripheral), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var previouslyLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.textColorUIlabel
-        label.textAlignment = .center
-        label.text = "Previously connected devices"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     // MARK: - Private Properties
@@ -75,28 +58,13 @@ final class BluetoothView: UIView {
             stackView.addArrangedSubview($0)
         })
         
-        [stackView, previouslyLabel, clearButton ].forEach({
-            self.addSubview($0)
-        })
+        self.addSubview(stackView)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             stackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/10)
-        ])
-        
-        NSLayoutConstraint.activate([
-            previouslyLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-            previouslyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            previouslyLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            clearButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            clearButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            clearButton.heightAnchor.constraint(equalTo: searchButton.heightAnchor),
-            clearButton.widthAnchor.constraint(equalTo: searchButton.widthAnchor),
         ])
     }
 }

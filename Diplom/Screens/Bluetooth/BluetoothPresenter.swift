@@ -1,29 +1,24 @@
-import Foundation
 import UIKit
 
 class BluetoothPresenter {
     
     private var bluetoothManager = BluetoothManager()
-    weak var bluetoothVC: BluetoothViewControllerInput?
     
+    // MARK: - Public Properties
+    weak var viewInput: UIViewController?
+
+    init(view: UIViewController) {
+        self.viewInput = view
+    }
 }
 
 extension BluetoothPresenter: BluetoothViewControllerOutput {
     
-    
-    
-    func searchPeripheral() {
-        bluetoothManager.searchPeripheral()
-        let viewController = ViewController()
-        bluetoothVC?.presentTableOfPeripherals(viewController: viewController)
-        print("click naxoi")
+    func connectPeripheral() {
+        bluetoothManager.connectPeripheral()
     }
     
     func disconnectPeripheral() {
         bluetoothManager.disconnectPeripheral()
-    }
-    
-    func clearListOfPeripherals() {
-        bluetoothManager.sendToPeripheral(text: "1")
     }
 }

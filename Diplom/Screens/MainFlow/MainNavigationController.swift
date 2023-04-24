@@ -31,8 +31,8 @@ final class MainNavigationController: UITabBarController {
         
         tabBar.layer.masksToBounds = true
         
-        let measureVC = MeasureVC()
-        let bluetoothVC = BluetoothVC()
+        let measureVC = AppModuleBuilder.measureBuild()
+        let bluetoothVC = AppModuleBuilder.bluetoothBuild()
         let calibrationVC = CalibrationVC()
         let storageVC = StorageVC()
         let settingsVC = SettingsVC()

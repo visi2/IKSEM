@@ -1,31 +1,16 @@
 import UIKit
 
-
 protocol BluetoothViewControllerOutput: AnyObject {
-    func searchPeripheral()
+    func connectPeripheral()
     func disconnectPeripheral()
-    func clearListOfPeripherals()
-    func setupPresenter(viewController: UIViewController)
 }
-
-
 
 
 final class BluetoothVC: UIViewController {
     // MARK: - Visual Components
     
     private var bluetoothView: BluetoothView { return self.view as! BluetoothView}
-    private var presenter: BluetoothViewControllerOutput?
-    
-    // MARK: - Initialization
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.presenter = BluetoothPresenter()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var presenter: BluetoothViewControllerOutput?
     
     // MARK: - Lifecycle
     
@@ -37,20 +22,11 @@ final class BluetoothVC: UIViewController {
     
     //MARK: - Actions
     
-    @objc  func searchPeripheral() {
-        setupPresenter(viewController: self)
-        presenter?.searchPeripheral()
+    @objc  func connectPeripheral() {
+        presenter?.connectPeripheral()
     }
 
     @objc  func disconnectPeripheral() {
         presenter?.disconnectPeripheral()
-    }
-    
-    @objc  func clearListOfPeripheral() {
-        presenter?.clearListOfPeripherals()
-    }
-    
-    func setupPresenter(viewController: UIViewController) {
-        presenter?.setupPresenter(viewController: viewController)
     }
 }

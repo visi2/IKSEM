@@ -3,7 +3,7 @@ import CoreBluetooth
 
 
 protocol APIBluetoothManager {
-    func searchPeripheral()
+    func connectPeripheral()
     func disconnectPeripheral()
     func sendToPeripheral(text: String)
 }
@@ -33,7 +33,6 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        BluetoothTableView.bluetoothPeripheralArray.append("\(peripheral.name)")
         if peripheral.identifier.uuidString == periphealUUID.uuidString {
             manager?.stopScan()
             peripheal = peripheral
@@ -92,7 +91,7 @@ extension BluetoothManager: CBPeripheralDelegate {
 
 
 extension BluetoothManager: APIBluetoothManager {
-    func searchPeripheral() {
+    func connectPeripheral() {
         manager?.scanForPeripherals(withServices: nil)
     }
     
