@@ -9,6 +9,7 @@ protocol APIBluetoothManager {
     func fetchFromPeripheral() -> CGFloat
 }
 
+
 final class BluetoothManager: NSObject {
     
     static let shared = BluetoothManager()
@@ -20,7 +21,7 @@ final class BluetoothManager: NSObject {
     private var manager: CBCentralManager?
     private let serviceUUID = CBUUID(string: "0xFFE0")
     private let periphealUUID = CBUUID(string: "b06e20c8-82d0-9378-7b6c-ccb088a69669")
-    var result: CGFloat = 0
+    private var result: CGFloat = 0
     
     //MARK: - Init
     
@@ -33,6 +34,8 @@ final class BluetoothManager: NSObject {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+    //MARK: - CBCentralManagerDelegate
 
 extension BluetoothManager: CBCentralManagerDelegate {
     
@@ -63,12 +66,9 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices([serviceUUID])
-        print("Connected to " +  peripheral.name!)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected from " +  peripheral.name!)
-        
         peripheal = nil
         characteristic = nil
     }
@@ -78,6 +78,8 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 }
 
+
+    //MARK: - CCBPeripheralDelegate
 
 extension BluetoothManager: CBPeripheralDelegate {
     
@@ -103,12 +105,12 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let value = [UInt8](characteristic.value!)
-
         self.result = CGFloat(value[0])
-        
     }
 }
 
+
+    //MARK: - Actions
 
 extension BluetoothManager: APIBluetoothManager {
     func connectPeripheral() {

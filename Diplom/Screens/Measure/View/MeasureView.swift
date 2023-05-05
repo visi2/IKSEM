@@ -84,7 +84,7 @@ final class MeasureView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "ИКСЭМ"
+        label.text = "ИК"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -158,6 +158,7 @@ final class MeasureView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 2.0
+        stackView.alignment = .center
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false

@@ -33,9 +33,9 @@ final class MainNavigationController: UITabBarController {
         
         let measureVC = AppModuleBuilder.measureBuild()
         let bluetoothVC = AppModuleBuilder.bluetoothBuild()
-        let calibrationVC = CalibrationVC()
-        let storageVC = StorageVC()
-        let settingsVC = SettingsVC()
+        let calibrationVC = AppModuleBuilder.calibrationBuild()
+        let storageVC = AppModuleBuilder.storageBuild()
+        let settingsVC = AppModuleBuilder.settingsBuild()
         
         
         measureVC.tabBarItem = UITabBarItem(title: Resources.Strings.measure,

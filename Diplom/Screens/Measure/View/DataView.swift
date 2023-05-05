@@ -57,14 +57,14 @@ final class DataView: UIView {
         return label
     }()
     
-    private lazy var templabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.textColorUIlabel
-        label.textAlignment = .right
-        label.text = "Tемпература: 25 °C"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+//    private lazy var templabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = Resources.Colors.textColorUIlabel
+//        label.textAlignment = .right
+//        label.text = "Tемпература: 25 °C"
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     
     private lazy var mileagelabel: UILabel = {
         let label = UILabel()
@@ -84,7 +84,7 @@ final class DataView: UIView {
         return stackView
     }()
     
-    private lazy var stackView2: UIStackView = {
+    private lazy var secondLineStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 3.0
@@ -131,11 +131,11 @@ final class DataView: UIView {
             firstLineStackView.addArrangedSubview($0)
         })
         
-        [templabel, templabel].forEach({
-            stackView2.addArrangedSubview($0)
-        })
+//        [templabel, templabel].forEach({
+//            secondLineStackView.addArrangedSubview($0)
+//        })
         
-        [firstLineStackView, operatorlabel, stackView2].forEach({
+        [firstLineStackView, operatorlabel, secondLineStackView].forEach({
             dataStackView.addArrangedSubview($0)
         })
         

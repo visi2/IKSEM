@@ -5,7 +5,7 @@ class CalibrationVC: UIViewController {
     // MARK: - Visual Components
 
     private var calibrationView: CalibrationView { return self.view as! CalibrationView}
-    
+    var presenter: CalibrationPresenter?
     // MARK: - Lifecycle
     
     override func loadView() {

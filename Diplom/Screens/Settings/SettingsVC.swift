@@ -6,7 +6,7 @@ class SettingsVC: UIViewController {
 
     private var settingsView: SettingsView { return self.view as! SettingsView}
     private var activeFieldFrame: CGRect?
-    
+    var presenter: SettingsPresenter?
     // MARK: - Deinitialization
 
     deinit {

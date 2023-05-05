@@ -15,5 +15,26 @@ enum AppModuleBuilder {
         view.presenter = presenter
         return view
     }
+    
+    static func calibrationBuild() -> UIViewController {
+        let view = CalibrationVC()
+        let presenter = CalibrationPresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+    
+    static func storageBuild() -> UIViewController {
+        let view = StorageVC()
+        let presenter = StoragePresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+    
+    static func settingsBuild() -> UIViewController {
+        let view = SettingsVC()
+        let presenter = SettingsPresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
 }
 

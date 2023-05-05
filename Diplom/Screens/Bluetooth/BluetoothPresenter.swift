@@ -1,6 +1,6 @@
 import UIKit
 
-class BluetoothPresenter {
+final class BluetoothPresenter {
     
     private var bluetoothManager = BluetoothManager.shared
     

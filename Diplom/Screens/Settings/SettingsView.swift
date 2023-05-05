@@ -122,6 +122,7 @@ final class SettingsView: UIView {
         textField.textColor = UIColor(hexString: "#FFFFFF")
         textField.layer.cornerRadius = 10
         textField.setPadding(left: 10)
+        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
