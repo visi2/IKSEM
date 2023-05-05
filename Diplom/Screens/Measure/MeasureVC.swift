@@ -7,6 +7,7 @@ protocol MeasureViewControllerInput {
 protocol MeasureViewControllerOutput: AnyObject {
     func start()
     func stop()
+    func flash(_ sender: UISwitch)
 }
 
 final class MeasureVC: UIViewController {
@@ -35,6 +36,10 @@ final class MeasureVC: UIViewController {
 
     @objc  func stopVC() {
         presenter?.stop()
+    }
+    
+    @objc func flash(_ sender: UISwitch) {
+        presenter?.flash(sender)
     }
 }
 
