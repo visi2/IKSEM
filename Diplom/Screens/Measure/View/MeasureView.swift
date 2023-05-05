@@ -129,9 +129,14 @@ final class MeasureView: UIView {
         return button
     }()
     
-    private lazy var lightSwitch: UISwitch = {
+    private lazy var lightSwitch1: UISwitch = {
         let lightSwitch = UISwitch()
-        lightSwitch.addTarget(nil, action: #selector(MeasureVC.flash(_:)), for: .valueChanged)
+        lightSwitch.translatesAutoresizingMaskIntoConstraints = false
+        return lightSwitch
+    }()
+    
+    private lazy var lightSwitch2: UISwitch = {
+        let lightSwitch = UISwitch()
         lightSwitch.translatesAutoresizingMaskIntoConstraints = false
         return lightSwitch
     }()
@@ -152,6 +157,16 @@ final class MeasureView: UIView {
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var switchLightStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 2.0
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private lazy var buttonStackView: UIStackView = {
@@ -195,7 +210,11 @@ final class MeasureView: UIView {
             dataStackView.addArrangedSubview($0)
         })
         
-        [startButton, lightSwitch, stopButton].forEach({
+        [lightSwitch1, lightSwitch2].forEach({
+            switchLightStackView.addArrangedSubview($0)
+        })
+        
+        [startButton, switchLightStackView, stopButton].forEach({
             buttonStackView.addArrangedSubview($0)
         })
         // self.stackView4.addArrangedSubview(offlabel)
@@ -250,4 +269,3 @@ extension MeasureView: MeasureViewInput {
         chartView.addDataPoint(point)
     }
 }
-

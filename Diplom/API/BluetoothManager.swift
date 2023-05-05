@@ -6,14 +6,10 @@ protocol APIBluetoothManager {
     func connectPeripheral()
     func disconnectPeripheral()
     func sendToPeripheral(text: String)
-    func fetchFromPeripheral() -> CGFloat
 }
 
 
 final class BluetoothManager: NSObject {
-    
-    static let shared = BluetoothManager()
-
     //MARK: - Private Properties
     
     private var peripheal: CBPeripheral?
@@ -93,19 +89,13 @@ extension BluetoothManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
         characteristic = characteristics[0]
-        for characteristic in characteristics {
-            if characteristic.properties.contains(.read) {
-                peripheral.readValue(for: characteristic)
-            }
-            if characteristic.properties.contains(.notify) {
-                peripheral.setNotifyValue(true, for: characteristic)
-            }
-        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let value = [UInt8](characteristic.value!)
+
         self.result = CGFloat(value[0])
+        
     }
 }
 
@@ -124,13 +114,11 @@ extension BluetoothManager: APIBluetoothManager {
     
     func sendToPeripheral(text: String) {
         if (peripheal != nil && characteristic != nil) {
-            let data = text.data(using: .ascii)
+            let data = text.data(using: .unicode)
             peripheal!.writeValue(data!,  for: characteristic!, type: CBCharacteristicWriteType.withoutResponse)
-            print(data!)
+           
         }
     }
     
-    func fetchFromPeripheral() -> CGFloat {
-        return result
-    }
+    
 }

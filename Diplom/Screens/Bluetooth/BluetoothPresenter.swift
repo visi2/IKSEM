@@ -2,7 +2,7 @@ import UIKit
 
 final class BluetoothPresenter {
     
-    private var bluetoothManager = BluetoothManager.shared
+    private var bluetoothManager = BluetoothManager()
     
     // MARK: - Public Properties
     weak var viewInput: UIViewController?
