@@ -18,58 +18,69 @@ final class MeasureView: UIView {
         return chartview
     }()
     
-    private lazy var firstBarView: UIView = {
-        let barView = UIView()
-        barView.backgroundColor = .black
-        barView.translatesAutoresizingMaskIntoConstraints = false
-        return barView
+    private lazy var scale: UILabel = {
+        let label = UILabel()
+        label.text = "0.2"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private lazy var secondBarView: UIView = {
-        let barView = UIView()
-        barView.backgroundColor = .black
-        barView.translatesAutoresizingMaskIntoConstraints = false
-        return barView
+    private lazy var scale1: UILabel = {
+        let label = UILabel()
+        label.text = "0.4"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private lazy var thirdBarView: UIView = {
-        let barView = UIView()
-        barView.backgroundColor = .black
-        barView.translatesAutoresizingMaskIntoConstraints = false
-        return barView
+    private lazy var scale2: UILabel = {
+        let label = UILabel()
+        label.text = "0.6"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private lazy var fourthBarView: UIView = {
-        let barView = UIView()
-        barView.backgroundColor = .black
-        barView.translatesAutoresizingMaskIntoConstraints = false
-        return barView
+    private lazy var scale3: UILabel = {
+        let label = UILabel()
+        label.text = "0.8"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private lazy var barViewsStackView: UIStackView = {
+    private lazy var scale4: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale5: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scaleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 5.0
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private lazy var scale: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 1.0
         stackView.distribution = .equalSpacing
-        stackView.backgroundColor = .clear
-        var currentNum = 0
-        for _ in 0...10 {
-            let label = UILabel()
-            label.text = "\(currentNum)"
-            label.font = UIFont.systemFont(ofSize: 15)
-            label.textColor = .white
-            currentNum += 10
-            stackView.addArrangedSubview(label)
-        }
+        stackView.alignment = .center
+        stackView.backgroundColor = Resources.Colors.dataBackgroundColor
+        stackView.layer.borderWidth = 1
+        stackView.layer.borderColor = UIColor(hexString: "#B1B9FF").cgColor
+        stackView.layer.shadowColor = UIColor(hexString: "#B1B9FF").cgColor
+        stackView.layer.shadowOffset = .zero
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -157,7 +168,7 @@ final class MeasureView: UIView {
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 2.0
+        stackView.spacing = 100.0
         stackView.alignment = .center
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
@@ -183,49 +194,42 @@ final class MeasureView: UIView {
         
         self.backgroundColor = Resources.Colors.backgroundColor
         
-        [chartView, barViewsStackView, scale, dataView, dataStackView, buttonStackView].forEach({
+        [chartView, dataView, dataStackView, buttonStackView, lightSwitch, scaleStackView, chartView].forEach({
             self.addSubview($0)
-        })
-        
-        [firstBarView, secondBarView, thirdBarView, fourthBarView].forEach({
-            barViewsStackView.addArrangedSubview($0)
         })
         
         [namelabel, batteryView, statusLabel].forEach({
             dataStackView.addArrangedSubview($0)
         })
         
-        [startButton, lightSwitch, stopButton].forEach({
+        [scale4, scale3, scale2, scale1, scale, scale5].forEach({
+            scaleStackView.addArrangedSubview($0)
+        })
+        
+        [startButton, stopButton].forEach({
             buttonStackView.addArrangedSubview($0)
         })
         // self.stackView4.addArrangedSubview(offlabel)
         // self.stackView4.addArrangedSubview(onlabel)
         
         NSLayoutConstraint.activate([
-            chartView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            chartView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            chartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25)
+            scaleStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            scaleStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            scaleStackView.heightAnchor.constraint(equalToConstant: 263),
+            scaleStackView.widthAnchor.constraint(equalToConstant: 30),
         ])
         
         NSLayoutConstraint.activate([
-            barViewsStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
-            barViewsStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor, constant: 10),
-            barViewsStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor, constant: -10),
-            barViewsStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1)
+            chartView.topAnchor.constraint(equalTo: scaleStackView.topAnchor),
+            chartView.leadingAnchor.constraint(equalTo: scaleStackView.trailingAnchor),
+            chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
+            chartView.heightAnchor.constraint(equalTo: scaleStackView.heightAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            scale.topAnchor.constraint(equalTo: barViewsStackView.bottomAnchor, constant: 5),
-            scale.leadingAnchor.constraint(equalTo: barViewsStackView.leadingAnchor, constant: -5),
-            scale.trailingAnchor.constraint(equalTo: barViewsStackView.trailingAnchor, constant: 10),
-            scale.heightAnchor.constraint(equalTo: firstBarView.heightAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            dataView.topAnchor.constraint(equalTo: scale.bottomAnchor, constant: 20),
-            dataView.leadingAnchor.constraint(equalTo: barViewsStackView.leadingAnchor),
-            dataView.trailingAnchor.constraint(equalTo: barViewsStackView.trailingAnchor),
+            dataView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 50),
+            dataView.leadingAnchor.constraint(equalTo: scaleStackView.leadingAnchor),
+            dataView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
             dataView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)
         ])
         
@@ -237,7 +241,12 @@ final class MeasureView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: dataStackView.bottomAnchor, constant: 50),
+            lightSwitch.topAnchor.constraint(equalTo: dataStackView.bottomAnchor, constant: 20),
+            lightSwitch.centerXAnchor.constraint(equalTo: centerXAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: lightSwitch.bottomAnchor, constant: 30),
             buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)

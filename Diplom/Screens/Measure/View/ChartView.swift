@@ -4,8 +4,8 @@ final class RealTimeGraphView: UIView {
     
     let maxDataPoints = 20
     var dataPoints: [CGFloat] = [0]
-    let mmSize: CGFloat = 3 // размер в миллиметрах
-    let gridSize: CGFloat = 10 // размер сетки в пикселях
+    let mmSize: CGFloat = 3.1 // размер в миллиметрах
+    let gridSize: CGFloat = 16.8// размер сетки в пикселях
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -23,7 +23,7 @@ final class RealTimeGraphView: UIView {
         
         let context = UIGraphicsGetCurrentContext()!
 
-        context.setStrokeColor(UIColor.black.cgColor)
+        context.setStrokeColor(UIColor.white.cgColor)
         context.setLineWidth(0.5)
 
         for i in 0...Int(size.width) {

@@ -4,12 +4,11 @@ import UIKit
 final class StorageView: UIView {
     //MARK: - Visual Components
     
-    private lazy var chartView: UIImageView = {
-        let chartview = UIImageView()
-        chartview.image = UIImage(named: "fake.png")
-        chartview.translatesAutoresizingMaskIntoConstraints = false
-        return chartview
-    }()
+    private lazy var chartView: RealTimeGraphView = {
+         let chartview = RealTimeGraphView()
+         chartview.translatesAutoresizingMaskIntoConstraints = false
+         return chartview
+     }()
     
     private lazy var datelabel: UILabel = {
         let label = UILabel()
@@ -24,7 +23,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Серийный номер ИКСЭМ:"
+        label.text = "Серийный номер ИКС: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,7 +32,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Дата начала и окончания записи:"
+        label.text = "Дата начала записи:"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,7 +41,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Среднее значение КС:"
+        label.text = "Среднее значение КС: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,7 +50,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Средняя скорость:"
+        label.text = "Средняя скорость: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,7 +59,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Значение проскальзывания:"
+        label.text = "Значение проскальзывания: "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,7 +68,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Пройденное расстояние:"
+        label.text = "Пройденное расстояние: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -78,7 +77,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Фамилия оператора:"
+        label.text = "Фамилия оператора: Кваша"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,7 +86,7 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Температура:"
+        label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -134,6 +133,73 @@ final class StorageView: UIView {
         return stackView
     }()
     
+    private lazy var scale: UILabel = {
+        let label = UILabel()
+        label.text = "0.2"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale1: UILabel = {
+        let label = UILabel()
+        label.text = "0.4"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale2: UILabel = {
+        let label = UILabel()
+        label.text = "0.6"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale3: UILabel = {
+        let label = UILabel()
+        label.text = "0.8"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale4: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scale5: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var scaleStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5.0
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.backgroundColor = Resources.Colors.dataBackgroundColor
+        stackView.layer.borderWidth = 1
+        stackView.layer.borderColor = UIColor(hexString: "#B1B9FF").cgColor
+        stackView.layer.shadowColor = UIColor(hexString: "#B1B9FF").cgColor
+        stackView.layer.shadowOffset = .zero
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     // MARK: - Private Properties
     
     private weak var controller: StorageVC?
@@ -160,26 +226,37 @@ final class StorageView: UIView {
             stackView.addArrangedSubview($0)
         })
         
+        [scale4, scale3, scale2, scale1, scale, scale5].forEach({
+            scaleStackView.addArrangedSubview($0)
+        })
+        
         [datelabel, serialNumberlabel, dateStartStopMeasurelabel, averageKCLabel,
          averageSpeedLabel, valueOfSlippageLabel, valueOfDistanceLabel,
          nameOfOperatorLabel, tempLabel, stackView].forEach({
             allStackView.addArrangedSubview($0)
         })
         
-        [chartView, allStackView].forEach({
+        [chartView, allStackView, scaleStackView].forEach({
             self.addSubview($0)
         })
         
         NSLayoutConstraint.activate([
-            chartView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            chartView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            chartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+            scaleStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            scaleStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            scaleStackView.heightAnchor.constraint(equalToConstant: 263),
+            scaleStackView.widthAnchor.constraint(equalToConstant: 30),
+        ])
+        
+        NSLayoutConstraint.activate([
+            chartView.topAnchor.constraint(equalTo: scaleStackView.topAnchor),
+            chartView.leadingAnchor.constraint(equalTo: scaleStackView.trailingAnchor),
+            chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
+            chartView.heightAnchor.constraint(equalTo: scaleStackView.heightAnchor)
         ])
         
         NSLayoutConstraint.activate([
             allStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
-            allStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
+            allStackView.leadingAnchor.constraint(equalTo: scaleStackView.leadingAnchor),
             allStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
             allStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
