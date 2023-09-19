@@ -36,6 +36,7 @@
 		3DB1943329A3D9D80070DF3A /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */; };
 		3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB91FFA29A76E0500FA4A7D /* StorageView.swift */; };
 		3DC712E0298175E400AE8960 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC712DF298175E400AE8960 /* MeasureView.swift */; };
+		3DCD898E2A1A3F3300652250 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD898D2A1A3F3300652250 /* Notification.swift */; };
 		3DF781412993EC78003E0E46 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF781402993EC78003E0E46 /* DataView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		3DB91FFA29A76E0500FA4A7D /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		3DB91FFC29A79B8F00FA4A7D /* CalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationView.swift; sourceTree = "<group>"; };
 		3DC712DF298175E400AE8960 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
+		3DCD898D2A1A3F3300652250 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		3DF781402993EC78003E0E46 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,6 +258,7 @@
 			children = (
 				3D4A5B4329805458005550E1 /* UIColor + Extension.swift */,
 				3DB1943229A3D9D80070DF3A /* TextField + Extension.swift */,
+				3DCD898D2A1A3F3300652250 /* Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				3D5DE5642A05AA3F003C40CC /* StoragePresenter.swift in Sources */,
 				3D1F3DE629CA085B00E0AC23 /* AppModuleBuilder.swift in Sources */,
 				3D7699E0299F76A10066B790 /* SettingsView.swift in Sources */,
+				3DCD898E2A1A3F3300652250 /* Notification.swift in Sources */,
 				3DB91FFB29A76E0500FA4A7D /* StorageView.swift in Sources */,
 				3DF781412993EC78003E0E46 /* DataView.swift in Sources */,
 				3D8302BE29F715FE005448CA /* ChartView.swift in Sources */,

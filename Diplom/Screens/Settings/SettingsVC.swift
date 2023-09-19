@@ -13,6 +13,10 @@ class SettingsVC: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Lifecycle
     
     override func loadView() {

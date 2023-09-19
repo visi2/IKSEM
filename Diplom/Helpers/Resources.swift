@@ -4,7 +4,7 @@ import UIKit
 enum Resources {
     
     enum Colors {
-        static var activeTabBar = UIColor(hexString: "#0000FF")
+        static var activeTabBar = UIColor(hexString: "#1E90FF")
         static var inActiveStartButton = UIColor(hexString: "#00FF00")
         static var activeStartButton = UIColor(hexString: "#008000")
         static var inActiveStopButton = UIColor(hexString: "#FF0000")

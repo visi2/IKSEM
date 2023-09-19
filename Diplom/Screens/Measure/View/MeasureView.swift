@@ -85,7 +85,7 @@ final class MeasureView: UIView {
         return stackView
     }()
     
-    private lazy var dataView: DataView = {
+    public lazy var dataView: DataView = {
         let dataView = DataView()
         dataView.translatesAutoresizingMaskIntoConstraints = false
         return dataView
@@ -127,14 +127,14 @@ final class MeasureView: UIView {
     }()
     
     private lazy var startButton: AppButton = {
-        let button = AppButton(text: "Start", radius: 20, type: 1)
+        let button = AppButton(text: "Старт", radius: 20, type: 1)
         button.addTarget(nil, action: #selector(MeasureVC.startVC), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var stopButton: AppButton = {
-        let button = AppButton(text: "Stop", radius: 20, type: 2)
+        let button = AppButton(text: "Стоп", radius: 20, type: 2)
         button.addTarget(nil, action: #selector(MeasureVC.stopVC), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -227,7 +227,7 @@ final class MeasureView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            dataView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 50),
+            dataView.topAnchor.constraint(equalTo:  chartView.bottomAnchor, constant: 30),
             dataView.leadingAnchor.constraint(equalTo: scaleStackView.leadingAnchor),
             dataView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
             dataView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)

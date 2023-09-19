@@ -12,6 +12,10 @@ final class BluetoothVC: UIViewController {
     private var bluetoothView: BluetoothView { return self.view as! BluetoothView}
     var presenter: BluetoothViewControllerOutput?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Lifecycle
     
     override func loadView() {
@@ -19,6 +23,7 @@ final class BluetoothVC: UIViewController {
         
         view = BluetoothView()
     }
+
     
     //MARK: - Actions
     

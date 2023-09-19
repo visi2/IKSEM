@@ -15,18 +15,19 @@ final class SettingsView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Имя:"
+        label.text = "Фамилия:"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Введите имя"
+        textField.placeholder = "Введите фамилию"
         textField.backgroundColor = Resources.Colors.backgroundText
         textField.textColor = UIColor(hexString: "#FFFFFF")
         textField.layer.cornerRadius = 10
         textField.setPadding(left: 10)
+        textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -90,18 +91,19 @@ final class SettingsView: UIView {
         textField.layer.cornerRadius = 10
         textField.keyboardType = .numberPad
         textField.setPadding(left: 10)
+        textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private lazy var saveButton: AppButton = {
-        let button = AppButton(text: "Save changes", radius: 10, type: 3)
+        let button = AppButton(text: "Сохранить изменения", radius: 10, type: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var downloadSettingsButton: AppButton = {
-        let button = AppButton(text: "Download settings", radius: 10, type: 3)
+        let button = AppButton(text: "Загрузить настройки", radius: 10, type: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -183,7 +185,7 @@ final class SettingsView: UIView {
         })
         
         [namelabel, nameTextField, radiusMeasurelabel, radiusMeasureTextField,
-         radiusForwardlabel, radiusForwardTextField, skollabel, skolTextField,
+         radiusForwardlabel, radiusForwardTextField,
          saveButton, downloadSettingsButton, passwordlabel, stackViewPassword].forEach({
             stackViewAll.addArrangedSubview($0)
         })
@@ -257,5 +259,26 @@ final class SettingsView: UIView {
         } else if let viewFrame = stackViewAll.arrangedSubviews.last?.frame  {
             scrollView.scrollRectToVisible(viewFrame, animated: true)
         }
+    }
+}
+
+extension SettingsView: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let currentText = skolTextField.text ?? ""
+
+        let userInfo = ["text": currentText]
+        
+        NotificationCenter.default.post(name: .textFieldNotification,
+                                        object: nil,
+                                        userInfo: userInfo)
+        
+        let currentText2 = nameTextField.text ?? ""
+        
+        let userInfo2 = ["text2": currentText2]
+        
+        NotificationCenter.default.post(name: .textFieldNotification,
+                                        object: nil,
+                                        userInfo: userInfo2)
     }
 }

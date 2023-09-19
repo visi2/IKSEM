@@ -61,7 +61,6 @@ final class MainNavigationController: UITabBarController {
         
         setViewControllers([measureVC,
                             bluetoothVC,
-                            calibrationVC,
                             storageVC,
                             settingsVC
                            ],

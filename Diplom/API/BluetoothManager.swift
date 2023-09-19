@@ -105,7 +105,14 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let value = [UInt8](characteristic.value!)
-        self.result = CGFloat(value[0])
+        let res = CGFloat(value[0])
+        self.result = res
+        
+        let userInfo = ["data": res]
+        
+        NotificationCenter.default.post(name: .data,
+                                        object: nil,
+                                        userInfo: userInfo)
     }
 }
 

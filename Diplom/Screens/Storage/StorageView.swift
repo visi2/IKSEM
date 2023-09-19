@@ -1,6 +1,10 @@
 import UIKit
 
 
+protocol StorageViewInput: AnyObject {
+    func showPoint(point: CGFloat)
+}
+
 final class StorageView: UIView {
     //MARK: - Visual Components
     
@@ -13,8 +17,13 @@ final class StorageView: UIView {
     private lazy var datelabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
-        label.textAlignment = .center
-        label.text = "Дата записи протокола: "
+        label.textAlignment = .right
+        label.font = UIFont(name: "Helvetica", size: 15)
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: today)
+        label.text = "Дата записи протокола: \(dateString)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -23,28 +32,28 @@ final class StorageView: UIView {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Серийный номер ИКС: N/A"
+        label.text = "Серийный номер ИКС: 1"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var dateStartStopMeasurelabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.textColorUIlabel
-        label.textAlignment = .center
-        label.text = "Дата начала записи:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+//    private lazy var dateStartStopMeasurelabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = Resources.Colors.textColorUIlabel
+//        label.textAlignment = .center
+//        label.text = "Дата начала записи:"
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     
-    private lazy var averageKCLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.textColorUIlabel
-        label.textAlignment = .center
-        label.text = "Среднее значение КС: N/A"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+//    private lazy var averageKCLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = Resources.Colors.textColorUIlabel
+//        label.textAlignment = .center
+//        label.text = "Среднее значение КС: N/A"
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     
     private lazy var averageSpeedLabel: UILabel = {
         let label = UILabel()
@@ -55,11 +64,11 @@ final class StorageView: UIView {
         return label
     }()
     
-    private lazy var valueOfSlippageLabel: UILabel = {
+    public var valueOfSlippageLabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .center
-        label.text = "Значение проскальзывания: "
+        label.text =  "Значение проскальзывания: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -73,11 +82,11 @@ final class StorageView: UIView {
         return label
     }()
     
-    private lazy var nameOfOperatorLabel: UILabel = {
+    public var nameOfOperatorLabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
+        label.text = "Фамилия оператора: N/A"
         label.textAlignment = .center
-        label.text = "Фамилия оператора: Кваша"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -100,17 +109,17 @@ final class StorageView: UIView {
         return label
     }()
     
-    private lazy var showMapButton: AppButton = {
-        let button = AppButton(text: "Показать на карте", radius: 10, type: 3)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var halfSwitch: UISwitch = {
-        let halfSwitch = UISwitch()
-        halfSwitch.translatesAutoresizingMaskIntoConstraints = false
-        return halfSwitch
-    }()
+//    private lazy var showMapButton: AppButton = {
+//        let button = AppButton(text: "Показать на карте", radius: 10, type: 3)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//
+//    private lazy var halfSwitch: UISwitch = {
+//        let halfSwitch = UISwitch()
+//        halfSwitch.translatesAutoresizingMaskIntoConstraints = false
+//        return halfSwitch
+//    }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -126,7 +135,6 @@ final class StorageView: UIView {
     private lazy var allStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillProportionally
-        stackView.spacing = 10
         stackView.alignment = .leading
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -222,17 +230,17 @@ final class StorageView: UIView {
         
         self.backgroundColor = Resources.Colors.backgroundColor
         
-        [showMapButton, halfSwitch].forEach({
-            stackView.addArrangedSubview($0)
-        })
+//        [showMapButton, halfSwitch].forEach({
+//            stackView.addArrangedSubview($0)
+//        })
         
         [scale4, scale3, scale2, scale1, scale, scale5].forEach({
             scaleStackView.addArrangedSubview($0)
         })
         
-        [datelabel, serialNumberlabel, dateStartStopMeasurelabel, averageKCLabel,
-         averageSpeedLabel, valueOfSlippageLabel, valueOfDistanceLabel,
-         nameOfOperatorLabel, tempLabel, stackView].forEach({
+        [datelabel, serialNumberlabel,
+         averageSpeedLabel, valueOfDistanceLabel,
+         nameOfOperatorLabel, tempLabel].forEach({
             allStackView.addArrangedSubview($0)
         })
         
@@ -263,3 +271,9 @@ final class StorageView: UIView {
     }
 }
 
+
+extension StorageView: StorageViewInput {
+    func showPoint(point: CGFloat) {
+        chartView.addDataPoint(point)
+    }
+}

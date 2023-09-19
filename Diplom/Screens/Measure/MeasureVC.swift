@@ -15,10 +15,15 @@ final class MeasureVC: UIViewController {
     
     private var measureView: MeasureView { return self.view as! MeasureView}
     private var timer: Timer?
+    private var name: String = "N/A"
     
     // MARK: - Public Properties
 
     var presenter: MeasureViewControllerOutput?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - Lifecycle
     
@@ -26,6 +31,27 @@ final class MeasureVC: UIViewController {
         super.loadView()
         
         view = MeasureView()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(controlTextDidChange(_:)),
+                                               name: .textFieldNotification,
+                                               object: nil)
+        
+    }
+    
+    @objc func controlTextDidChange(_ notification: Notification) {
+        if let data = notification.userInfo?["text2"] as? String {
+            name = data
+            measureView.dataView.operatorlabel.text = "Оператор: \(name)"
+        }
     }
     
     //MARK: - Actions
@@ -45,6 +71,11 @@ final class MeasureVC: UIViewController {
 
 extension MeasureVC: MeasureViewControllerInput {
     func showPoint(point: CGFloat) {
+        var currentPoint: CGFloat = 0
+        if point > 250 {
+            currentPoint = 250
+        }
+        print("point \(point)")
         measureView.showPoint(point: point)
     }
 }

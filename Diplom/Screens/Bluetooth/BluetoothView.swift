@@ -9,14 +9,14 @@ final class BluetoothView: UIView {
     //MARK: - Visual Components
     
     private lazy var searchButton: AppButton = {
-        let button = AppButton(text: "Device connect", radius: 15, type: 3)
+        let button = AppButton(text: "Подключить устройство", radius: 15, type: 3)
         button.addTarget(nil, action: #selector(BluetoothVC.connectPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var disconectButton: AppButton = {
-        let button = AppButton(text: "Disconnect", radius: 15, type: 3)
+        let button = AppButton(text: "Отключить", radius: 15, type: 3)
         button.addTarget(nil, action: #selector(BluetoothVC.disconnectPeripheral), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

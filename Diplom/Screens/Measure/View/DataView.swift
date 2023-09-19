@@ -48,11 +48,11 @@ final class DataView: UIView {
         return label
     }()
     
-    private lazy var operatorlabel: UILabel = {
+    public lazy var operatorlabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.textColorUIlabel
         label.textAlignment = .right
-        label.text = "Оператор: Андрей Кваша"
+        label.text = "Оператор: N/A"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

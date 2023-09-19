@@ -8,34 +8,42 @@ final class MeasurePresenter {
     // MARK: - Private Properties
     
     private var timer: Timer?
+    private var flag: Bool = false
     private var bluetoothManager = BluetoothManager.shared
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - Initialization
     
     init(view: UIViewController) {
         self.viewInput = view as? any UIViewController & MeasureViewControllerInput
-    }
-    
-    private func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(addDataPoint), userInfo: nil, repeats: true)
-    }
-    
-    @objc func addDataPoint() {
-        let res = bluetoothManager.fetchFromPeripheral()
-        viewInput?.showPoint(point: res)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(controlDataDidChange(_:)),
+                                               name: .data,
+                                               object: nil)
+    }
+    
+    @objc func controlDataDidChange(_ notification: Notification) {
+        if let data = notification.userInfo?["data"] as? CGFloat {
+            
+            if flag {
+                viewInput?.showPoint(point: data)
+            }
+            
+        }
     }
 }
 
 extension MeasurePresenter: MeasureViewControllerOutput {
     func start() {
-        timer?.invalidate()
-        setupTimer()
         bluetoothManager.sendToPeripheral(text: "1")
+        flag = true
     }
     
     func stop() {
-        timer?.invalidate()
         bluetoothManager.sendToPeripheral(text: "0")
     }
     
